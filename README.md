@@ -8,6 +8,8 @@ Einfach die Datei `src/blockschaltbilder.tex` in das Dokument hinzufügen, z.B.:
 \input{<Pfad zum Verzeichnis mit der Datei>/blockschaltbilder}
 ```
 
+ Anwendungsbeispiele für die Makros sind in der Datei `examples/_examples.tex`.
+
 ## Verfügbare Makros
 * Verzweigung (`\Verzweigung`)
 * Summationsstelle (`\Summationsstelle`)
@@ -82,12 +84,12 @@ Einfach die Datei `src/blockschaltbilder.tex` in das Dokument hinzufügen, z.B.:
 * Zeitkonstante `T` und Dämpfung `d`
 
 ## Empfohlene Größen
-| Element                         | Größe    | TikZ-Eigenschaften             |
-|:--------------------------------|:---------|:-------------------------------|
-| Verzweigung (skalar)            | `2 pt`   |                                |
-| Verzweigung (vektoriell)        | `4 pt`   |                                |
-| Summationsstelle                | `0.4 cm` |                                |
-| Vordefinierter Block            | `1 cm`   |                                |
-| Allgemeine Übertragungsfunktion | `1 cm`   | _optional:_ `inner sep = 8 pt` |
-| Skalarer Signalfluss            |          | `thick, -latex'`               |
-| Vektorieller Signalfluss        |          | `ultra thick, -latex'`         |
+| Element                         | Größe    | TikZ-Eigenschaften                                |
+|:--------------------------------|:---------|:--------------------------------------------------|
+| Verzweigung (skalar)            | `2 pt`   |                                                   |
+| Verzweigung (vektoriell)        | `4 pt`   |                                                   |
+| Summationsstelle                | `0.4 cm` |                                                   |
+| Vordefinierter Block            | `1 cm`   |                                                   |
+| Allgemeine Übertragungsfunktion | `1 cm`   | _optional:_ `inner sep = 8 pt`                    |
+| Skalarer Signalfluss            |          | `thick, -latex` oder `thick, -latex'`             |
+| Vektorieller Signalfluss        |          | `ultra thick, -latex` oder `ultra thick, -latex'` |
