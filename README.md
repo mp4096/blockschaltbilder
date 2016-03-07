@@ -20,53 +20,59 @@ Einfach die Datei `src/blockschaltbilder.tex` in das Dokument hinzufügen, z.B.:
 * PT2-Glied (`\PTZweiGlied`)
 
 ## Argumente
-* `\Verzweigung[O]{<1>}{<2>}{<3>}`
-    0. Optionale TikZ-Eigenschaften (z.B. Farbe)
-    1. Name des TikZ-Knotens (`node`)
-    2. Position
-    3. Größe
-* `\Summationsstelle[O]{<1>}{<2>}{<3>}{<4>}{<5>}{<6>}{<7>}`
-    0. Optionale TikZ-Eigenschaften (z.B. Farbe)
-    1. Name des TikZ-Knotens (`node`)
-    2. Position
-    3. Größe
-    4. Symbol auf 12 Uhr (oben)
-    5. Symbol auf 3 Uhr (rechts)
-    6. Symbol auf 6 Uhr (unten)
-    7. Symbol auf 9 Uhr (links)
-* `\UeFunk[O]{<1>}{<2>}{<3>}{<4>}`
-    0. Optionale TikZ-Eigenschaften (z.B. Farbe)
-    1. Name des TikZ-Knotens (`node`)
-    2. Position
-    3. Größe
-    4. Inhalt des Knotens
-* `\PGlied[O]{<1>}{<2>}{<3>}{<4>}`, `\IGlied[O]{<1>}{<2>}{<3>}{<4>}`, `\DGlied[O]{<1>}{<2>}{<3>}{<4>}`
-    0. Optionale TikZ-Eigenschaften (z.B. Farbe)
-    1. Name des TikZ-Knotens (`node`)
-    2. Position
-    3. Größe
-    4. Verstärkung `K`
-* `\TZGlied[O]{<1>}{<2>}{<3>}{<4>}{<5>}`
-    0. Optionale TikZ-Eigenschaften (z.B. Farbe)
-    1. Name des TikZ-Knotens (`node`)
-    2. Position
-    3. Größe
-    4. Verstärkung `K`
-    5. Totzeit `T_t`
-* `\PTEinsGlied[O]{<1>}{<2>}{<3>}{<4>}{<5>}`
-    0. Optionale TikZ-Eigenschaften (z.B. Farbe)
-    1. Name des TikZ-Knotens (`node`)
-    2. Position
-    3. Größe
-    4. Verstärkung `K`
-    5. Zeitkonstante `T`
-* `\PTZweiGlied[O]{<1>}{<2>}{<3>}{<4>}{<5>}`
-    0. Optionale TikZ-Eigenschaften (z.B. Farbe)
-    1. Name des TikZ-Knotens (`node`)
-    2. Position
-    3. Größe
-    4. Verstärkung `K`
-    5. Zeitkonstante `T` und Dämpfung `d`
+`\Verzweigung[<1>]{<2>}{<3>}{<4>}`
+1. Optionale TikZ-Eigenschaften (z.B. Farbe)
+* Name des TikZ-Knotens (`node`)
+* Position
+* Größe
+
+`\Summationsstelle[<1>]{<2>}{<3>}{<4>}{<5>}{<6>}{<7>}{<8>}`
+1. Optionale TikZ-Eigenschaften (z.B. Farbe)
+* Name des TikZ-Knotens (`node`)
+* Position
+* Größe
+* Symbol auf 12 Uhr (oben)
+* Symbol auf 3 Uhr (rechts)
+* Symbol auf 6 Uhr (unten)
+* Symbol auf 9 Uhr (links)
+
+`\UeFunk[<1>]{<2>}{<3>}{<4>}{<5>}`
+1. Optionale TikZ-Eigenschaften (z.B. Farbe)
+* Name des TikZ-Knotens (`node`)
+* Position
+* Größe
+* Inhalt des Knotens
+
+`\PGlied[<1>]{<2>}{<3>}{<4>}{<5>}`, `\IGlied[<1>]{<2>}{<3>}{<4>}{<5>}`, `\DGlied[<1>]{<2>}{<3>}{<4>}{<5>}`
+1. Optionale TikZ-Eigenschaften (z.B. Farbe)
+* Name des TikZ-Knotens (`node`)
+* Position
+* Größe
+* Verstärkung `K`
+
+`\TZGlied[<1>]{<2>}{<3>}{<4>}{<5>}{<6>}`
+1. Optionale TikZ-Eigenschaften (z.B. Farbe)
+* Name des TikZ-Knotens (`node`)
+* Position
+* Größe
+* Verstärkung `K`
+* Totzeit `T_t`
+
+`\PTEinsGlied[<1>]{<2>}{<3>}{<4>}{<5>}{<6>}`
+1. Optionale TikZ-Eigenschaften (z.B. Farbe)
+* Name des TikZ-Knotens (`node`)
+* Position
+* Größe
+* Verstärkung `K`
+* Zeitkonstante `T`
+
+`\PTZweiGlied[<1>]{<2>}{<3>}{<4>}{<5>}{<6>}`
+1. Optionale TikZ-Eigenschaften (z.B. Farbe)
+* Name des TikZ-Knotens (`node`)
+* Position
+* Größe
+* Verstärkung `K`
+* Zeitkonstante `T` und Dämpfung `d`
 
 ## Empfohlene Größen
 | Element                         | Größe    | TikZ-Eigenschaften             |
