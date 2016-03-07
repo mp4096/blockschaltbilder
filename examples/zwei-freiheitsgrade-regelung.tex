@@ -1,0 +1,33 @@
+\begin{tikzpicture}
+
+  % Knoten / Blöcke
+  \coordinate (sollwert) at (-4.0, 0);
+  \coordinate (ausgang) at (4.0, 0);
+  \Summationsstelle{summation}{0, 0}{0.4 cm}{}{}{}{}
+  \Summationsstelle{soll-ist}{0, -3}{0.4 cm}{}{}{}{}
+  \UeFunk{strecke}{2, 0}{1.0 cm}{$G(s)$}
+  \UeFunk{regler}{0, -1.5}{1.0 cm}{$R(s)$}
+  \UeFunk{vorsteuerung}{-2, 0}{1.0 cm}{$G_{\mathrm{V}}(s)$}
+  \Verzweigung{verzw-ausgang}{3.20, 0}{2 pt}
+  \Verzweigung{verzw-sollwert}{-3.20, 0}{2 pt}
+
+  % Signalflüsse
+  \draw[thick, -latex'] (summation)      -- (strecke);
+  \draw[thick, -latex'] (regler)         -- (summation);
+  \draw[thick, -latex'] (vorsteuerung)   -- (summation);
+  \draw[thick, -latex'] (soll-ist)       -- (regler);
+  \draw[thick         ] (strecke)        -- (verzw-ausgang);
+  \draw[thick, -latex'] (verzw-ausgang)  -- (ausgang);
+  \draw[thick, -latex'] (verzw-ausgang)  |- (soll-ist);
+  \draw[thick         ] (sollwert)       -- (verzw-sollwert);
+  \draw[thick, -latex'] (verzw-sollwert) -- (vorsteuerung);
+  \draw[thick, -latex'] (verzw-sollwert) |- (soll-ist);
+
+  % Beschriftungen
+  \node[outer sep = 0.1 cm, above right] at (sollwert) {$w$};
+  \node[outer sep = 0.1 cm, above left ] at (strecke.west) {$u$};
+  \node[outer sep = 0.1 cm, above left ] at (ausgang) {$y$};
+  \node[outer sep = 0.1 cm, below left ] at (regler.south) {$e$};
+  \node[                    above right] at (soll-ist.east) {$-$};
+
+\end{tikzpicture}

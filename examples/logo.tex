@@ -1,0 +1,19 @@
+\definecolor{pantone300}{HTML}{006EB6}
+\definecolor{pantone1495}{HTML}{FF993F}
+\definecolor{pantone396}{HTML}{E0E20C}
+\definecolor{pantone212}{HTML}{F94F8E}
+
+\begin{tikzpicture}
+
+  \node at (0, 0) { %
+    \resizebox{9.5 cm}{!}{\fontfamily{phv}\selectfont{Blockschaltbilder}} %
+  };
+
+  \PGlied     [very thick, black!60   ]{p-glied  }{-5, 2}{1.2 cm}{}
+  \IGlied     [very thick, pantone300 ]{i-glied  }{-3, 2}{1.2 cm}{}
+  \DGlied     [very thick, pantone1495]{d-glied  }{-1, 2}{1.2 cm}{}
+  \TZGlied    [very thick, pantone212 ]{tz-glied }{ 1, 2}{1.2 cm}{}{}
+  \PTEinsGlied[very thick, pantone396 ]{pt1-glied}{ 3, 2}{1.2 cm}{}{}
+  \PTZweiGlied[very thick, black!60   ]{pt2-glied}{ 5, 2}{1.2 cm}{}{}
+
+\end{tikzpicture}

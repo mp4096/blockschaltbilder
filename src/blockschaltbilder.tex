@@ -1,0 +1,127 @@
+\newcommand{\Summationsstelle}[8][]{ %
+  \begin{scope}[thick, #1]
+    % Leerer Knoten mit vordefinierter Größe
+    \node[minimum width = #4, minimum height = #4] (#2) at (#3) {};
+    % Symbol auf 12 Uhr (oben)
+    \node[below] at (#2.north) {#5};
+    % Symbol auf 3 Uhr (rechts)
+    \node[left]  at (#2.east)  {#6};
+    % Symbol auf 6 Uhr (unten)
+    \node[above] at (#2.south) {#7};
+    % Symbol auf 9 Uhr (rechts)
+    \node[right] at (#2.west)  {#8};
+    % Kreis
+    \draw (#2) circle (0.5*#4);
+  \end{scope} %
+}
+
+\newcommand{\Verzweigung}[4][]{ %
+  \begin{scope}[inner sep = 0 pt, outer sep = 0 pt, thick, #1]
+    % Leerer Knoten
+    \node (#2) at (#3) {};
+    % Gefüllter Kreis
+    \draw[fill] (#2) circle (0.5*#4);
+  \end{scope} %
+}
+
+\newcommand{\UeFunk}[5][]{ %
+  \begin{scope}[thick, #1]
+    % Knoten mit vordefinierter Größe
+    \node[minimum width = #4, minimum height = #4] (#2) at (#3) {#5};
+    % Block
+    \draw (#2.north east) rectangle (#2.south west);
+  \end{scope} %
+}
+
+\newcommand{\PGlied}[5][]{ %
+  \begin{scope}[thick, #1]
+    % Leerer Knoten mit vordefinierter Größe
+    \node[minimum width = #4, minimum height = #4] (#2) at (#3) {};
+    % Beschriftung über dem Block
+    \node[above, align = left, text width = #4] at (#2.north) {#5};
+    % Block
+    \draw (#2.north east) rectangle (#2.south west);
+    % Horizontale Linie
+    \draw ([yshift = -0.225*#4] #2.north east) -- ([yshift = -0.225*#4] #2.north west);
+  \end{scope} %
+}
+
+\newcommand{\IGlied}[5][]{ %
+  \begin{scope}[thick, #1]
+    % Leerer Knoten mit vordefinierter Größe
+    \node[minimum width = #4, minimum height = #4] (#2) at (#3) {};
+    % Beschriftung über dem Block
+    \node[above, align = left, text width = #4] at (#2.north) {#5};
+    % Block
+    \draw (#2.north east) rectangle (#2.south west);
+    % Diagonale Linie
+    \draw (#2.north east) -- (#2.south west);
+  \end{scope} %
+}
+
+\newcommand{\DGlied}[5][]{ %
+  \begin{scope}[thick, #1]
+    % Leerer Knoten mit vordefinierter Größe
+    \node[minimum width = #4, minimum height = #4] (#2) at (#3) {};
+    % Beschriftung über dem Block
+    \node[above, align = left, text width = #4] at (#2.north) {#5};
+    % Block
+    \draw (#2.north east) rectangle (#2.south west);
+    % D-Eck
+    \draw ([xshift = 0.300*#4] #2.north west) |- ([yshift = 0.225*#4] #2.south east);
+  \end{scope} %
+}
+
+\newcommand{\TZGlied}[6][]{ %
+  \begin{scope}[thick, #1]
+    % Leerer Knoten mit vordefinierter Größe
+    \node[minimum width = #4, minimum height = #4] (#2) at (#3) {};
+    % Beschriftung über dem Block
+    % \mbox stellt sicher, dass \hfill auch bei fehlenden Argumenten aktiv ist
+    \node[above, align = center, text width = #4] at (#2.north) {\mbox{#5} \hfill \mbox{#6}};
+    % Block
+    \draw (#2.north east) rectangle (#2.south west);
+    % Totzeit-Eck
+    \draw ([xshift = 0.400*#4] #2.south west) |- ([yshift = -0.225*#4] #2.north east);
+  \end{scope} %
+}
+
+\newcommand{\PTEinsGlied}[6][]{ %
+  \begin{scope}[thick, #1]
+    % Leerer Knoten mit vordefinierter Größe
+    \node[minimum width = #4, minimum height = #4] (#2) at (#3) {};
+    % Beschriftung über dem Block
+    % \mbox stellt sicher, dass \hfill auch bei fehlenden Argumenten aktiv ist
+    \node[above, align = center, text width = #4] at (#2.north) {\mbox{#5} \hfill \mbox{#6}};
+    % Block
+    \draw (#2.north east) rectangle (#2.south west);
+    % PT1-Kurve
+    \begin{scope}[shift={(#2.south west)}]
+      \draw %
+        (0.00, 0.00) .. controls (0.10*#4, 0.80*#4) and (0.40*#4, 0.80*#4) .. %
+        ([yshift = -0.18*#4] #2.north east);
+    \end{scope} %
+  \end{scope} %
+}
+
+\newcommand{\PTZweiGlied}[6][]{ %
+  \begin{scope}[thick, #1]
+    % Leerer Knoten mit vordefinierter Größe
+    \node[minimum width = #4, minimum height = #4] (#2) at (#3) {};
+    % Beschriftung über dem Block
+    % \mbox stellt sicher, dass \hfill auch bei fehlenden Argumenten aktiv ist
+    \node[above, align = center, text width = #4] at (#2.north) {\mbox{#5} \hfill \mbox{#6}};
+    % Block
+    \draw (#2.north east) rectangle (#2.south west);
+    % PT2-Kurve
+    \begin{scope}[shift={(#2.south west)}]
+      \draw %
+        (0.00,    0.00   ) .. controls (0.07*#4, 0.00   ) and (0.10*#4, 0.10*#4) .. %
+        (0.18*#4, 0.40*#4) .. controls (0.26*#4, 0.70*#4) and (0.35*#4, 0.85*#4) .. %
+        (0.43*#4, 0.85*#4) .. controls (0.49*#4, 0.85*#4) and (0.58*#4, 0.75*#4) .. %
+        (0.64*#4, 0.69*#4) .. controls (0.70*#4, 0.63*#4) and (0.76*#4, 0.59*#4) .. %
+        (0.82*#4, 0.59*#4) .. controls (0.88*#4, 0.59*#4) and (0.97*#4, 0.60*#4) .. %
+        ([yshift = -0.35*#4)] #2.north east);
+    \end{scope} %
+  \end{scope} %
+}

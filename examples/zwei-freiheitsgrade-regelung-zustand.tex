@@ -1,0 +1,36 @@
+\begin{tikzpicture}
+
+  % Knoten / Blöcke
+  \coordinate (sollwert) at (-4.0, 0);
+  \coordinate (ausgang) at (5.5, 0);
+  \Summationsstelle{summation}{0, 0}{0.4 cm}{}{}{}{}
+  \Summationsstelle{soll-ist}{0, -3}{0.4 cm}{}{}{}{}
+  \UeFunk[align = left, inner sep = 8 pt]{strecke}{2.5, 0}{1.0 cm}{ %
+    $\dot{\mathbf{x}} = \mathbf{A}\mathbf{x} + \mathbf{b} u$ \\[8 pt] %
+    $y = \mathbf{c}^\mathrm{T} \mathbf{x}$ %
+  }
+  \UeFunk{regler}{0, -1.5}{1.0 cm}{$\mathbf{r}^\mathrm{T}$}
+  \UeFunk{vorsteuerung}{-2, 0}{1.0 cm}{$m_u$}
+  \UeFunk{vorsteuerung-zustand}{-2, -3}{1.0 cm}{$\mathbf{m}_{\mathbf{x}}$}
+  \Verzweigung{verzw-sollwert}{-3.20, 0}{2 pt}
+
+  % Signalflüsse
+  \draw[thick,       -latex'] (summation)            -- (strecke);
+  \draw[thick,       -latex'] (regler)               -- (summation);
+  \draw[thick,       -latex'] (vorsteuerung)         -- (summation);
+  \draw[ultra thick, -latex'] (soll-ist)             -- (regler);
+  \draw[thick,       -latex'] (strecke)              -- (ausgang);
+  \draw[ultra thick, -latex'] (strecke)              |- (soll-ist);
+  \draw[thick               ] (sollwert)             -- (verzw-sollwert);
+  \draw[thick,       -latex'] (verzw-sollwert)       |- (vorsteuerung-zustand);
+  \draw[thick,       -latex'] (verzw-sollwert)       |- (vorsteuerung);
+  \draw[ultra thick, -latex'] (vorsteuerung-zustand) -- (soll-ist);
+
+  % Beschriftungen
+  \node[outer sep = 0.1 cm, above right] at (sollwert) {$w$};
+  \node[outer sep = 0.1 cm, above left] at (strecke.west) {$u$};
+  \node[outer sep = 0.1 cm, above left] at (ausgang) {$y$};
+  \node[outer sep = 0.1 cm, below left] at (regler.south) {$\mathbf{e}$};
+  \node[above right] at (soll-ist.east) {$-$};
+
+\end{tikzpicture}

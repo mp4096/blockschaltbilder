@@ -1,0 +1,36 @@
+\begin{tikzpicture}
+
+  % Knoten / Blöcke
+  \coordinate (eingang) at (-1.5, 0);
+  \coordinate (ausgang) at ( 7.5, 0);
+  \Summationsstelle{sum-1}{-0.3, 0}{0.4 cm}{}{}{}{}
+  \Summationsstelle{sum-2}{1.2, 0}{0.4 cm}{}{}{}{}
+  \IGlied{i-glied-1}{3, 0}{1.0 cm}{}
+  \IGlied{i-glied-2}{5.5, 0}{1.0 cm}{}
+  \Verzweigung{verzw-y-dot}{4.25, 0}{2 pt}{}
+  \Verzweigung{verzw-y}{6.75, 0}{2 pt}{}
+  \PGlied{p-daempfung}{3, -1.8}{1.0 cm}{$2 \zeta \omega$}
+  \PGlied{p-frequenz}{3, -3.6}{1.0 cm}{$\omega^2$}
+
+  % Signalflüsse
+  \draw[thick, -latex'] (eingang)     -- (sum-1);
+  \draw[thick, -latex'] (sum-1)       -- (sum-2);
+  \draw[thick, -latex'] (sum-2)       -- (i-glied-1);
+  \draw[thick         ] (i-glied-1)   -- (verzw-y-dot);
+  \draw[thick, -latex'] (verzw-y-dot) -- (i-glied-2);
+  \draw[thick         ] (i-glied-2)   -- (verzw-y);
+  \draw[thick, -latex'] (verzw-y)     -- (ausgang);
+  \draw[thick, -latex'] (verzw-y-dot) |- (p-daempfung);
+  \draw[thick, -latex'] (verzw-y)     |- (p-frequenz);
+  \draw[thick, -latex'] (p-daempfung) -| (sum-2);
+  \draw[thick, -latex'] (p-frequenz)  -| (sum-1);
+
+  % Beschriftungen
+  \node[outer sep = 0.1 cm, above right] at (eingang) {$u$};
+  \node[outer sep = 0.1 cm, above left] at (i-glied-1.west)  {$\ddot{y}$};
+  \node[outer sep = 0.1 cm, above left] at (i-glied-2.west) {$\dot{y}$};
+  \node[outer sep = 0.1 cm, above left] at (ausgang) {$y$};
+  \node[below right] at (sum-2.south) {$-$};
+  \node[below right] at (sum-1.south) {$-$};
+
+\end{tikzpicture}
