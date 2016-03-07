@@ -21,12 +21,14 @@ Einfach die Datei `src/blockschaltbilder.tex` in das Dokument hinzufügen, z.B.:
 
 ## Argumente
 `\Verzweigung[<1>]{<2>}{<3>}{<4>}`
+
 1. Optionale TikZ-Eigenschaften (z.B. Farbe)
 * Name des TikZ-Knotens (`node`)
 * Position
 * Größe
 
 `\Summationsstelle[<1>]{<2>}{<3>}{<4>}{<5>}{<6>}{<7>}{<8>}`
+
 1. Optionale TikZ-Eigenschaften (z.B. Farbe)
 * Name des TikZ-Knotens (`node`)
 * Position
@@ -37,6 +39,7 @@ Einfach die Datei `src/blockschaltbilder.tex` in das Dokument hinzufügen, z.B.:
 * Symbol auf 9 Uhr (links)
 
 `\UeFunk[<1>]{<2>}{<3>}{<4>}{<5>}`
+
 1. Optionale TikZ-Eigenschaften (z.B. Farbe)
 * Name des TikZ-Knotens (`node`)
 * Position
@@ -44,6 +47,7 @@ Einfach die Datei `src/blockschaltbilder.tex` in das Dokument hinzufügen, z.B.:
 * Inhalt des Knotens
 
 `\PGlied[<1>]{<2>}{<3>}{<4>}{<5>}`, `\IGlied[<1>]{<2>}{<3>}{<4>}{<5>}`, `\DGlied[<1>]{<2>}{<3>}{<4>}{<5>}`
+
 1. Optionale TikZ-Eigenschaften (z.B. Farbe)
 * Name des TikZ-Knotens (`node`)
 * Position
@@ -51,6 +55,7 @@ Einfach die Datei `src/blockschaltbilder.tex` in das Dokument hinzufügen, z.B.:
 * Verstärkung `K`
 
 `\TZGlied[<1>]{<2>}{<3>}{<4>}{<5>}{<6>}`
+
 1. Optionale TikZ-Eigenschaften (z.B. Farbe)
 * Name des TikZ-Knotens (`node`)
 * Position
@@ -59,6 +64,7 @@ Einfach die Datei `src/blockschaltbilder.tex` in das Dokument hinzufügen, z.B.:
 * Totzeit `T_t`
 
 `\PTEinsGlied[<1>]{<2>}{<3>}{<4>}{<5>}{<6>}`
+
 1. Optionale TikZ-Eigenschaften (z.B. Farbe)
 * Name des TikZ-Knotens (`node`)
 * Position
@@ -67,6 +73,7 @@ Einfach die Datei `src/blockschaltbilder.tex` in das Dokument hinzufügen, z.B.:
 * Zeitkonstante `T`
 
 `\PTZweiGlied[<1>]{<2>}{<3>}{<4>}{<5>}{<6>}`
+
 1. Optionale TikZ-Eigenschaften (z.B. Farbe)
 * Name des TikZ-Knotens (`node`)
 * Position
