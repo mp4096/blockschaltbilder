@@ -1,7 +1,7 @@
 \newcommand{\Summationsstelle}[8][]{ %
   \begin{scope}[thick, #1]
     % Leerer Knoten mit vordefinierter Größe
-    \node[minimum width = #4, minimum height = #4] (#2) at (#3) {};
+    \node[circle, minimum width = #4, minimum height = #4] (#2) at (#3) {};
     % Symbol auf 12 Uhr (oben)
     \node[below] at (#2.north) {#5};
     % Symbol auf 3 Uhr (rechts)
@@ -17,8 +17,8 @@
 
 \newcommand{\Verzweigung}[4][]{ %
   \begin{scope}[inner sep = 0 pt, outer sep = 0 pt, thick, #1]
-    % Leerer Knoten
-    \node (#2) at (#3) {};
+    % Leerer Knoten mit vordefinierter Größe
+    \node[circle, minimum width = #4, minimum height = #4] (#2) at (#3) {};
     % Gefüllter Kreis
     \draw[fill] (#2) circle (0.5*#4);
   \end{scope} %
