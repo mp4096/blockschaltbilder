@@ -125,3 +125,31 @@
     \end{scope} %
   \end{scope} %
 }
+
+\newcommand{\NeueEA}[5]{ %
+  % Füge neue Koordinaten hinzu:
+  % Nordseite (oben), von links nach rechts
+  \foreach \i in {1, 2, ..., #2}
+  {
+    \coordinate (#1--north \i) at
+      ($(#1.north west)!{\i/(#2 + 1)}!(#1.north east)$);
+  }
+  % Ostseite (rechts), von oben nach unten
+  \foreach \i in {1, 2, ..., #3}
+  {
+    \coordinate (#1--east \i) at
+      ($(#1.north east)!{\i/(#3 + 1)}!(#1.south east)$);
+  }
+  % Südseite (unten), von links nach rechts
+  \foreach \i in {1, 2, ..., #4}
+  {
+    \coordinate (#1--south \i) at
+      ($(#1.south west)!{\i/(#4 + 1)}!(#1.south east)$);
+  }
+  % Westseite (links), von oben nach unten
+  \foreach \i in {1, 2, ..., #5}
+  {
+    \coordinate (#1--west \i) at
+      ($(#1.north west)!{\i/(#5 + 1)}!(#1.south west)$);
+  }
+}
