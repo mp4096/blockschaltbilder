@@ -90,6 +90,22 @@ Einfach die Datei `src/blockschaltbilder.tex` in das Dokument hinzufügen, z.B.:
 
 Für weitere Informationen siehe `_examples.tex`.
 
+## Benutzung mit TikzEdt
+Falls man TikzEdt oder andere WYSIWYG-Tools benutzt, kann es sinnvoll sein, die Definition der Koordinaten und die Definition der Blöcke zu trennen, z.B.:
+
+```tex
+\coordinate (i glied 1) at (0, 0);
+\coordinate (i glied 2) at (3, 0);
+	
+\IGlied{i glied 1}{i glied 1}{1 cm}{}
+\IGlied{i glied 2}{i glied 2}{1 cm}{}
+	
+\draw[thick, -latex'] (i glied 1) -- (i glied 2);
+```
+
+Obwohl diese Syntax umständlicher aussieht, hat sie den Vorteil, dass die Koordinaten als solche vom TikzEdt-Parser erkannt werden. Die werden also im Overlay markiert und man kann in der Vorschau Blöcke interaktiv positionieren.
+
+
 ## Empfohlene Größen
 | Element                         | Größe    | TikZ-Eigenschaften                                |
 |:--------------------------------|:---------|:--------------------------------------------------|
