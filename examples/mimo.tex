@@ -1,0 +1,51 @@
+\providecolor{pantone300}{HTML}{006EB6}
+\providecolor{pantone1495}{HTML}{FF993F}
+\providecolor{pantone396}{HTML}{E0E20C}
+\providecolor{pantone212}{HTML}{F94F8E}
+
+\begin{tikzpicture}
+
+  \UeFunk[align = center, inner sep = 0.5 cm]{mimo}{0, 0}{2 cm}{ %
+    Ein MIMO-System:\\[4 pt] %
+    4 Ports oben\\ %
+    2 Ports rechts\\ %
+    3 Ports unten\\ %
+    5 Ports links %
+    }
+
+  % Fügt zu einem existierenden Block neue Ports hinzu
+  \NeueEA{mimo}{4}{2}{3}{5}
+
+  \draw[pantone300!30,  fill] (mimo--north 1) circle (0.05);
+  \draw[pantone300!50,  fill] (mimo--north 2) circle (0.05);
+  \draw[pantone300!70,  fill] (mimo--north 3) circle (0.05);
+  \draw[pantone300!90,  fill] (mimo--north 4) circle (0.05);
+
+  \draw[pantone1495!50, fill] (mimo--south 1) circle (0.05);
+  \draw[pantone1495!70, fill] (mimo--south 2) circle (0.05);
+  \draw[pantone1495!90, fill] (mimo--south 3) circle (0.05);
+
+  \draw[pantone396!50,  fill] (mimo--east 1) circle (0.05);
+  \draw[pantone396!90,  fill] (mimo--east 2) circle (0.05);
+
+  \draw[pantone212!10,  fill] (mimo--west 1) circle (0.05);
+  \draw[pantone212!30,  fill] (mimo--west 2) circle (0.05);
+  \draw[pantone212!50,  fill] (mimo--west 3) circle (0.05);
+  \draw[pantone212!70,  fill] (mimo--west 4) circle (0.05);
+  \draw[pantone212!90,  fill] (mimo--west 5) circle (0.05);
+
+
+  % Praktisches Beispiel: LFR-Darstellung
+  \UeFunk{strecke}{0, -8}{1.3 cm}{\Large $P$}
+  \NeueEA{strecke}{1}{3}{1}{3}
+  \UeFunk{regler}{0, -10}{1.3 cm}{\Large $K$}
+  \UeFunk{unsicherheit}{0, -6}{1.3 cm}{\Large $\Delta$}
+
+  \draw[thick, -latex'] (strecke--east 2) -- +( 2, 0) node[above, pos=0.7] {$e$};
+  \draw[thick, latex'-] (strecke--west 2) -- +(-2, 0) node[above, pos=0.7] {$d$};
+  \draw[thick, -latex'] (unsicherheit.west) -- +(-0.8, 0) |- (strecke--west 1) node[left, pos=0.25] {$w$};
+  \draw[thick, -latex'] (strecke--east 1) -- +(0.8, 0) |- (unsicherheit) node[right, pos=0.25] {$z$};
+  \draw[thick, -latex'] (regler.west) -- +(-0.8, 0) |- (strecke--west 3) node[left, pos=0.25] {$u$};
+  \draw[thick, -latex'] (strecke--east 3) -- +(0.8, 0) |- (regler) node[right, pos=0.25] {$y$};
+
+\end{tikzpicture}

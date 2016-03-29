@@ -1,17 +1,7 @@
-\newcommand{\Summationsstelle}[8][]{ %
+\newcommand{\Summationsstelle}[4][]{ %
   \begin{scope}[thick, #1]
-    % Leerer Knoten mit vordefinierter Größe
-    \node[circle, minimum width = #4, minimum height = #4] (#2) at (#3) {};
-    % Symbol auf 12 Uhr (oben)
-    \node[below] at (#2.north) {#5};
-    % Symbol auf 3 Uhr (rechts)
-    \node[left]  at (#2.east)  {#6};
-    % Symbol auf 6 Uhr (unten)
-    \node[above] at (#2.south) {#7};
-    % Symbol auf 9 Uhr (rechts)
-    \node[right] at (#2.west)  {#8};
-    % Kreis
-    \draw (#2) circle (0.5*#4);
+    % Runder Knoten mit vordefinierter Größe
+    \node[draw, circle, minimum width = #4, minimum height = #4] (#2) at (#3) {};
   \end{scope} %
 }
 
@@ -124,4 +114,32 @@
         ([yshift = -0.35*#4)] #2.north east);
     \end{scope} %
   \end{scope} %
+}
+
+\newcommand{\NeueEA}[5]{ %
+  % Füge neue Koordinaten hinzu:
+  % Nordseite (oben), von links nach rechts
+  \foreach \i in {1, 2, ..., #2}
+  {
+    \coordinate (#1--north \i) at
+      ($(#1.north west)!{\i/(#2 + 1)}!(#1.north east)$);
+  }
+  % Ostseite (rechts), von oben nach unten
+  \foreach \i in {1, 2, ..., #3}
+  {
+    \coordinate (#1--east \i) at
+      ($(#1.north east)!{\i/(#3 + 1)}!(#1.south east)$);
+  }
+  % Südseite (unten), von links nach rechts
+  \foreach \i in {1, 2, ..., #4}
+  {
+    \coordinate (#1--south \i) at
+      ($(#1.south west)!{\i/(#4 + 1)}!(#1.south east)$);
+  }
+  % Westseite (links), von oben nach unten
+  \foreach \i in {1, 2, ..., #5}
+  {
+    \coordinate (#1--west \i) at
+      ($(#1.north west)!{\i/(#5 + 1)}!(#1.south west)$);
+  }
 }
