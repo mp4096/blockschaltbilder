@@ -3,12 +3,13 @@
   % Knoten / Blöcke
   \coordinate (eingang) at (-1.5, 0);
   \coordinate (ausgang) at ( 7.5, 0);
+
   \Summationsstelle{sum-1}{-0.3, 0}{0.4 cm}{}{}{}{}
   \Summationsstelle{sum-2}{1.2, 0}{0.4 cm}{}{}{}{}
   \IGlied{i-glied-1}{3, 0}{1.0 cm}{}
   \IGlied{i-glied-2}{5.5, 0}{1.0 cm}{}
-  \Verzweigung{verzw-y-dot}{4.25, 0}{2 pt}{}
-  \Verzweigung{verzw-y}{6.75, 0}{2 pt}{}
+  \Verzweigung{verzw-y-dot}{4.25, 0}{2 pt}
+  \Verzweigung{verzw-y}{6.75, 0}{2 pt}
   \PGlied{p-daempfung}{3, -1.8}{1.0 cm}{$2 \zeta \omega$}
   \PGlied{p-frequenz}{3, -3.6}{1.0 cm}{$\omega^2$}
 
@@ -27,7 +28,7 @@
 
   % Beschriftungen
   \node[outer sep = 0.1 cm, above right] at (eingang) {$u$};
-  \node[outer sep = 0.1 cm, above left] at (i-glied-1.west)  {$\ddot{y}$};
+  \node[outer sep = 0.1 cm, above left] at (i-glied-1.west) {$\ddot{y}$};
   \node[outer sep = 0.1 cm, above left] at (i-glied-2.west) {$\dot{y}$};
   \node[outer sep = 0.1 cm, above left] at (ausgang) {$y$};
   \node[below right] at (sum-2.south) {$-$};
