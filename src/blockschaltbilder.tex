@@ -1,17 +1,7 @@
-\newcommand{\Summationsstelle}[8][]{ %
+\newcommand{\Summationsstelle}[4][]{ %
   \begin{scope}[thick, #1]
     % Leerer Knoten mit vordefinierter Größe
-    \node[circle, minimum width = #4, minimum height = #4] (#2) at (#3) {};
-    % Symbol auf 12 Uhr (oben)
-    \node[below] at (#2.north) {#5};
-    % Symbol auf 3 Uhr (rechts)
-    \node[left]  at (#2.east)  {#6};
-    % Symbol auf 6 Uhr (unten)
-    \node[above] at (#2.south) {#7};
-    % Symbol auf 9 Uhr (rechts)
-    \node[right] at (#2.west)  {#8};
-    % Kreis
-    \draw (#2) circle (0.5*#4);
+    \node[draw, circle, minimum width = #4, minimum height = #4] (#2) at (#3) {};
   \end{scope} %
 }
 

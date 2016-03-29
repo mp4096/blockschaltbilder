@@ -29,16 +29,12 @@ Einfach die Datei `src/blockschaltbilder.tex` in das Dokument hinzufügen, z.B.:
 * Position
 * Größe
 
-`\Summationsstelle[<1>]{<2>}{<3>}{<4>}{<5>}{<6>}{<7>}{<8>}`
+`\Summationsstelle[<1>]{<2>}{<3>}{<4>}`
 
 1. Optionale TikZ-Eigenschaften (z.B. Farbe)
 * Name des TikZ-Knotens (`node`)
 * Position
 * Größe
-* Symbol auf 12 Uhr (oben)
-* Symbol auf 3 Uhr (rechts)
-* Symbol auf 6 Uhr (unten)
-* Symbol auf 9 Uhr (links)
 
 `\UeFunk[<1>]{<2>}{<3>}{<4>}{<5>}`
 

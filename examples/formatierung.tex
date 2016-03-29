@@ -14,20 +14,24 @@
   \UeFunk[every node/.style={pattern=north east lines, pattern color=pantone300!30}, very thick, pantone300]{hintergrund 3}{4, -2}{1.2 cm}{$\frac{1}{s}$}
 
   % Relativkoordinaten für Knoten
-  \Summationsstelle{summe 1}{0, -4}{0.4 cm}{}{}{}{}
-  \draw[thick, -latex'] (summe 1) -- +(  45:0.5);
-  \draw[thick, latex'-] (summe 1) -- +( 135:0.6);
-  \draw[thick, -latex'] (summe 1) -- +(-135:0.7);
-  \draw[thick, latex'-] (summe 1) -- +( -45:0.8);
+  \Summationsstelle{summe 1}{0, -4}{0.4 cm}
+  \draw[thick, latex'-] (summe 1) -- +(-170:0.6);
+  \draw[thick, -latex'] (summe 1) -- +(-135:0.8);
+  \draw[thick, latex'-] (summe 1) -- +(-100:0.6);
+  \draw[thick, latex'-] (summe 1) -- +(0.8, 0);
+  \draw[thick, latex'-] (summe 1) -- +(0, 0.8);
 
-  \Summationsstelle{summe 2}{2, -4}{0.4 cm}{}{}{}{}
-  \draw[thick, latex'-] (summe 2) -- +(0.8, 0);
+  \Summationsstelle{summe 2}{2, -4}{0.4 cm}
+  \draw[thick, latex'-] (summe 2) -- +( -45:0.8);
+  \node[right] at (summe 2.315) {$-$};
   \draw[thick, latex'-] (summe 2) -- +(0, 0.8);
+  \node[above left] at (summe 2.north) {$+$};
 
-  \Summationsstelle{summe 3}{4, -4}{0.4 cm}{}{}{}{}
-  \draw[thick, latex'-] (summe 3) -- +( -45:0.8);
-  \node[right] at (summe 3.315) {$-$};
-  \draw[thick, latex'-] (summe 3) -- +(0, 0.8);
-  \node[above left] at (summe 3.north) {$+$};
+  % Symbole innerhalb und außerhalb einer Summationsstelle
+  \Summationsstelle{summe 3}{4, -4}{1 cm}
+  \node[left] at (summe 3.east) {\scriptsize$+$};
+  \node[above right] at (summe 3.45) {$+$};
+  \node[left] at (summe 3.west) {$+$};
+  \foreach \i in {0, 15, ..., 360} {\node at ($(summe 3.center)!{\i/360}!(summe 3.\i)$) {.};}
 
 \end{tikzpicture}
