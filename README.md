@@ -20,6 +20,7 @@ Einfach die Datei `src/blockschaltbilder.tex` in das Dokument hinzufügen, z.B.:
 * Totzeitglied (`\TZGlied`)
 * PT1-Glied (`\PTEinsGlied`)
 * PT2-Glied (`\PTZweiGlied`)
+* Zusätzliche Ein- und Ausgänge (`\NeueEA`)
 
 ## Argumente
 `\Verzweigung[<1>]{<2>}{<3>}{<4>}`
@@ -78,6 +79,16 @@ Einfach die Datei `src/blockschaltbilder.tex` in das Dokument hinzufügen, z.B.:
 * Größe
 * Verstärkung `K`
 * Zeitkonstante `T` und Dämpfung `d`
+
+`\NeueEA{<1>}{<2>}{<3>}{<4>}{<4>}`
+
+1. Name des Blocks, zu dem neue Ports hinzugefügt werden sollen
+* Anzahl von neuen Ports oben, > 0. Diese Ports heißen `<1>--north N`, wobei `N = 1, 2, ...`
+* Anzahl von neuen Ports rechts, > 0. Diese Ports heißen `<1>--east N`, wobei `N = 1, 2, ...`
+* Anzahl von neuen Ports unten, > 0. Diese Ports heißen `<1>--south N`, wobei `N = 1, 2, ...`
+* Anzahl von neuen Ports links, > 0. Diese Ports heißen `<1>--west N`, wobei `N = 1, 2, ...`
+
+Für weitere Informationen siehe `_examples.tex`.
 
 ## Empfohlene Größen
 | Element                         | Größe    | TikZ-Eigenschaften                                |
