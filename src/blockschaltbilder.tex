@@ -23,6 +23,34 @@
   \end{scope} %
 }
 
+\newcommand{\MGlied}[5][]{ %
+  \begin{scope}[thick, #1]
+    % Leerer Knoten mit vordefinierter Größe
+    \node[minimum width = #4, minimum height = #4] (#2) at (#3) {};
+    % Beschriftung über dem Block
+    \node[fill = none, above, align = left, text width = #4] at (#2.north) {#5};
+    % Block
+    \draw (#2.north east) rectangle (#2.south west);
+    % Multiplikationspunkt
+    \draw[solid, very thin, fill] (#2.center) circle (0.11*#4);
+  \end{scope} %
+}
+
+\newcommand{\MGliedVar}[5][]{ %
+  \begin{scope}[thick, #1]
+    % Leerer Knoten mit vordefinierter Größe
+    \node[minimum width = #4, minimum height = #4] (#2) at (#3) {};
+    % Beschriftung über dem Block
+    \node[fill = none, above, align = left, text width = #4] at (#2.north) {#5};
+    % Block
+    \draw (#2.north east) rectangle (#2.south west);
+    % Multiplikationskreuz
+    \draw (#2.center) %
+      +(45:0.225*#4) -- +(-135:0.225*#4) %
+      +(-45:0.225*#4) -- +(135:0.225*#4);
+  \end{scope} %
+}
+
 \newcommand{\PGlied}[5][]{ %
   \begin{scope}[thick, #1]
     % Leerer Knoten mit vordefinierter Größe

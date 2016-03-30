@@ -14,6 +14,7 @@ Einfach die Datei `src/blockschaltbilder.tex` in das Dokument hinzufügen, z.B.:
 * Verzweigung (`\Verzweigung`)
 * Summationsstelle (`\Summationsstelle`)
 * Allgemeine Übertragungsfunktion (`\UeFunk`)
+* M-Glied (`\MGlied` für das Punktsymbol, `\MGliedVar` für das Kreuzsymbol)
 * P-Glied (`\PGlied`)
 * I-Glied (`\IGlied`)
 * D-Glied (`\DGlied`)
@@ -44,6 +45,14 @@ Einfach die Datei `src/blockschaltbilder.tex` in das Dokument hinzufügen, z.B.:
 * Position
 * Größe
 * Inhalt des Knotens
+
+`\MGlied[<1>]{<2>}{<3>}{<4>}{<5>}`, `\MGliedVar[<1>]{<2>}{<3>}{<4>}{<5>}`
+
+1. Optionale TikZ-Eigenschaften (z.B. Farbe)
+* Name des TikZ-Knotens (`node`)
+* Position
+* Größe
+* Verstärkung `K`
 
 `\PGlied[<1>]{<2>}{<3>}{<4>}{<5>}`, `\IGlied[<1>]{<2>}{<3>}{<4>}{<5>}`, `\DGlied[<1>]{<2>}{<3>}{<4>}{<5>}`
 
@@ -96,10 +105,10 @@ Falls man TikzEdt oder andere WYSIWYG-Tools benutzt, kann es sinnvoll sein, die 
 ```tex
 \coordinate (i glied 1) at (0, 0);
 \coordinate (i glied 2) at (3, 0);
-	
+
 \IGlied{i glied 1}{i glied 1}{1 cm}{}
 \IGlied{i glied 2}{i glied 2}{1 cm}{}
-	
+
 \draw[thick, -latex'] (i glied 1) -- (i glied 2);
 ```
 
