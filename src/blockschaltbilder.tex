@@ -1,6 +1,6 @@
 \newcommand{\Summationsstelle}[4][]{ %
   \begin{scope}[thick, #1]
-    % Runder Knoten mit vordefinierter Größe
+    % Runder leerer Knoten mit vordefinierter Größe
     \node[draw, circle, minimum width = #4, minimum height = #4] (#2) at (#3) {};
   \end{scope} %
 }
@@ -10,7 +10,7 @@
     % Leerer Knoten mit vordefinierter Größe
     \node[circle, minimum width = #4, minimum height = #4] (#2) at (#3) {};
     % Gefüllter Kreis
-    \draw[fill] (#2) circle (0.5*#4);
+    \draw[solid, fill] (#2) circle (0.5*#4);
   \end{scope} %
 }
 
@@ -28,7 +28,7 @@
     % Leerer Knoten mit vordefinierter Größe
     \node[minimum width = #4, minimum height = #4] (#2) at (#3) {};
     % Beschriftung über dem Block
-    \node[above, align = left, text width = #4] at (#2.north) {#5};
+    \node[fill = none, above, align = left, text width = #4] at (#2.north) {#5};
     % Block
     \draw (#2.north east) rectangle (#2.south west);
     % Horizontale Linie
@@ -41,7 +41,7 @@
     % Leerer Knoten mit vordefinierter Größe
     \node[minimum width = #4, minimum height = #4] (#2) at (#3) {};
     % Beschriftung über dem Block
-    \node[above, align = left, text width = #4] at (#2.north) {#5};
+    \node[fill = none, above, align = left, text width = #4] at (#2.north) {#5};
     % Block
     \draw (#2.north east) rectangle (#2.south west);
     % Diagonale Linie
@@ -54,7 +54,7 @@
     % Leerer Knoten mit vordefinierter Größe
     \node[minimum width = #4, minimum height = #4] (#2) at (#3) {};
     % Beschriftung über dem Block
-    \node[above, align = left, text width = #4] at (#2.north) {#5};
+    \node[fill = none, above, align = left, text width = #4] at (#2.north) {#5};
     % Block
     \draw (#2.north east) rectangle (#2.south west);
     % D-Eck
@@ -68,7 +68,7 @@
     \node[minimum width = #4, minimum height = #4] (#2) at (#3) {};
     % Beschriftung über dem Block
     % \mbox stellt sicher, dass \hfill auch bei fehlenden Argumenten aktiv ist
-    \node[above, align = center, text width = #4] at (#2.north) {\mbox{#5} \hfill \mbox{#6}};
+    \node[fill = none, above, align = center, text width = #4] at (#2.north) {\mbox{#5} \hfill \mbox{#6}};
     % Block
     \draw (#2.north east) rectangle (#2.south west);
     % Totzeit-Eck
@@ -82,7 +82,7 @@
     \node[minimum width = #4, minimum height = #4] (#2) at (#3) {};
     % Beschriftung über dem Block
     % \mbox stellt sicher, dass \hfill auch bei fehlenden Argumenten aktiv ist
-    \node[above, align = center, text width = #4] at (#2.north) {\mbox{#5} \hfill \mbox{#6}};
+    \node[fill = none, above, align = center, text width = #4] at (#2.north) {\mbox{#5} \hfill \mbox{#6}};
     % Block
     \draw (#2.north east) rectangle (#2.south west);
     % PT1-Kurve
@@ -100,7 +100,7 @@
     \node[minimum width = #4, minimum height = #4] (#2) at (#3) {};
     % Beschriftung über dem Block
     % \mbox stellt sicher, dass \hfill auch bei fehlenden Argumenten aktiv ist
-    \node[above, align = center, text width = #4] at (#2.north) {\mbox{#5} \hfill \mbox{#6}};
+    \node[fill = none, above, align = center, text width = #4] at (#2.north) {\mbox{#5} \hfill \mbox{#6}};
     % Block
     \draw (#2.north east) rectangle (#2.south west);
     % PT2-Kurve

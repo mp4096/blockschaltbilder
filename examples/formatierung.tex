@@ -5,13 +5,13 @@
 
   % Unterschiedliche Linientypen
   \PTZweiGlied[thick, dashed, pantone300]{linien muster 1}{0, 0}{1.2 cm}{}{}
-  \PTZweiGlied[thick, dotted, pantone300]{linien muster 2}{2, 0}{1.2 cm}{}{}
-  \PTZweiGlied[dash pattern = on 1pt off 2pt on 4pt, thick, pantone300]{linien muster 3}{4, 0}{1.2 cm}{}{}
+  \PTEinsGlied[thick, dotted, pantone300]{linien muster 2}{2, 0}{1.2 cm}{}{}
+  \DGlied[dash pattern = on 1pt off 2pt on 4pt, thick, pantone300]{linien muster 3}{4, 0}{1.2 cm}{}
 
   % Unterschiedliche Hintergrundfarben und -muster
-  \UeFunk[every node/.style={fill = pantone300!10}, very thick, pantone300]{hintergrund 1}{0, -2}{1.2 cm}{$\frac{1}{s}$}
-  \UeFunk[every node/.style={pattern=crosshatch dots, pattern color=pantone1495!50}, very thick, pantone300]{hintergrund 2}{2, -2}{1.2 cm}{$\frac{1}{s}$}
-  \UeFunk[every node/.style={pattern=north east lines, pattern color=pantone300!30}, very thick, pantone300]{hintergrund 3}{4, -2}{1.2 cm}{$\frac{1}{s}$}
+  \PTZweiGlied[every node/.style={fill = pantone300!10}, very thick, pantone300]{hintergrund 1}{0, -2}{1.2 cm}{$K$}{$T$, $d$}
+  \MGlied[every node/.style={pattern = crosshatch dots, pattern color = pantone1495!50}, very thick, pantone300]{hintergrund 2}{2, -2}{1.2 cm}{$K$}
+  \UeFunk[every node/.style={pattern = north east lines, pattern color = pantone300!30}, very thick, pantone300]{hintergrund 3}{4, -2}{1.2 cm}{$\frac{1}{s}$}
 
   % Relativkoordinaten für Knoten
   \Summationsstelle{summe 1}{0, -4}{0.4 cm}
