@@ -171,3 +171,27 @@
       ($(#1.north west)!{(\i - 0.5)/(#5)}!(#1.south west)$);
   }
 }
+
+\newcommand{\KLGlied}[7][]{ %
+  \begin{scope}[thick, #1]
+    % Leerer Knoten mit vordefinierter Größe
+    \node[minimum width = #4, minimum height = #4] (#2) at (#3) {};
+    % Block
+    \draw (#2.north east) rectangle (#2.south west);
+    % Platz für die Kennlinie
+    \begin{scope}[shift = {(#2.center)}, x = 0.4*#4, y = 0.4*#4]
+      #5
+    \end{scope}
+    % Beschriftung über dem Block
+    % \mbox stellt sicher, dass \hfill auch bei fehlenden Argumenten aktiv ist
+    \node[fill = none, above, align = center, text width = #4] at (#2.north) {\mbox{#6} \hfill \mbox{#7}};
+  \end{scope} %
+}
+
+\newcommand{\Saettigung}[6][]{ %
+  \KLGlied[#1]{#2}{#3}{#4}{%
+    \draw[thin, -latex] (0, -1) -- (0, 1);
+    \draw[thin, -latex] (-1, 0) -- (1, 0);
+    \draw[thick] (-1, -0.8) -- (-0.4, -0.8) -- (0.4, 0.8) -- (1, 0.8);
+  }{#5}{#6}
+}

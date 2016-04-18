@@ -22,6 +22,8 @@ Einfach die Datei `src/blockschaltbilder.tex` in das Dokument hinzufügen, z.B.:
 * PT1-Glied (`\PTEinsGlied`)
 * PT2-Glied (`\PTZweiGlied`)
 * Zusätzliche Ein- und Ausgänge (`\NeueEA`)
+* Kennlinienglied (`\KLGlied`)
+* Sättigung (`\Saettigung`)
 
 ## Argumente
 `\Verzweigung[<1>]{<2>}{<3>}{<4>}`
@@ -89,13 +91,32 @@ Einfach die Datei `src/blockschaltbilder.tex` in das Dokument hinzufügen, z.B.:
 * Verstärkung `K`
 * Zeitkonstante `T` und Dämpfung `d`
 
-`\NeueEA{<1>}{<2>}{<3>}{<4>}{<4>}`
+`\NeueEA{<1>}{<2>}{<3>}{<4>}{<5>}`
 
 1. Name des Blocks, zu dem neue Ports hinzugefügt werden sollen
 * Anzahl von neuen Ports oben, > 0. Diese Ports heißen `<1>--north N`, wobei `N = 1, 2, ...`
 * Anzahl von neuen Ports rechts, > 0. Diese Ports heißen `<1>--east N`, wobei `N = 1, 2, ...`
 * Anzahl von neuen Ports unten, > 0. Diese Ports heißen `<1>--south N`, wobei `N = 1, 2, ...`
 * Anzahl von neuen Ports links, > 0. Diese Ports heißen `<1>--west N`, wobei `N = 1, 2, ...`
+
+`\KLGlied[<1>]{<2>}{<3>}{<4>}{<5>}{<6>}{<7>}`
+
+1. Optionale TikZ-Eigenschaften (z.B. Farbe)
+* Name des TikZ-Knotens (`node`)
+* Position
+* Größe
+* Beliebige Zeichenbefehle, das verfügbare Feld ist skaliert auf +/- 1 (siehe Beispiel)
+* Beschriftung oben links
+* Beschriftung oben rechts
+
+`\Sättigung[<1>]{<2>}{<3>}{<4>}{<5>}{<6>}`
+
+1. Optionale TikZ-Eigenschaften (z.B. Farbe)
+* Name des TikZ-Knotens (`node`)
+* Position
+* Größe
+* Beschriftung oben links
+* Beschriftung oben rechts
 
 Für weitere Informationen siehe `_examples.tex`.
 

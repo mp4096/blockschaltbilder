@@ -1,0 +1,24 @@
+\providecolor{pantone300}{HTML}{006EB6}
+\providecolor{pantone1495}{HTML}{FF993F}
+\providecolor{pantone396}{HTML}{E0E20C}
+\providecolor{pantone212}{HTML}{F94F8E}
+
+\begin{tikzpicture}
+
+  \KLGlied[pantone300]{kennlinie 1}{-3, 0}{1.2 cm}{ %
+    \draw[thin, -latex] (-1, 0) -- (1, 0);
+    \draw[thin, -latex] (0, -1) -- (0, 1);
+    \draw[domain=-1:1, smooth, variable=\x, thick] %
+    plot ({\x},{sin(\x*90)});
+  }{$\pm 1$}{}
+
+  \KLGlied{kennlinie 2}{0, 0}{1.2 cm}{ %
+    \draw[pantone212, thin, -latex] (-1, 0) -- (1, 0);
+    \draw[pantone212, thin, -latex] (0, -1) -- (0, 1);
+    \draw[pantone212, domain=-1:1, smooth, variable=\x, thick] %
+    plot ({\x},{0.5*cos(\x*180)});
+  }{$\pm 1$}{}
+
+  \Saettigung{sat}{3, 0}{1.2 cm}{$\pm u_\mathrm{max}$}{}
+
+\end{tikzpicture}
