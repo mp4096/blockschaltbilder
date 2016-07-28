@@ -8,7 +8,7 @@ Einfach die Datei `src/blockschaltbilder.tex` in das Dokument hinzufügen, z.B.:
 \input{<Pfad zum Verzeichnis mit der Datei>/blockschaltbilder}
 ```
 
- Anwendungsbeispiele für die Makros sind in der Datei `examples/_examples.tex`.
+Anwendungsbeispiele für die Makros sind in der Datei `examples/_examples.tex` zu finden.
 
 ## Verfügbare Makros
 | Makro                                       | Beispiel                                                                                                     |
