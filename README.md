@@ -11,19 +11,22 @@ Einfach die Datei `src/blockschaltbilder.tex` in das Dokument hinzufügen, z.B.:
  Anwendungsbeispiele für die Makros sind in der Datei `examples/_examples.tex`.
 
 ## Verfügbare Makros
-* Verzweigung (`\Verzweigung`)
-* Summationsstelle (`\Summationsstelle`)
-* Allgemeine Übertragungsfunktion (`\UeFunk`)
-* M-Glied (`\MGlied` für das Punktsymbol, `\MGliedVar` für das Kreuzsymbol)
-* P-Glied (`\PGlied`)
-* I-Glied (`\IGlied`)
-* D-Glied (`\DGlied`)
-* Totzeitglied (`\TZGlied`)
-* PT1-Glied (`\PTEinsGlied`)
-* PT2-Glied (`\PTZweiGlied`)
-* Zusätzliche Ein- und Ausgänge (`\NeueEA`)
-* Kennlinienglied (`\KLGlied`)
-* Sättigung (`\Saettigung`)
+| Makro                                       | Beispiel                                                                                                     |
+|:--------------------------------------------|:-------------------------------------------------------------------------------------------------------------|
+| Verzweigung (`\Verzweigung`)                |                                                                                                              |
+| Summationsstelle (`\Summationsstelle`)      | ![Summationsstelle](https://syncandshare.lrz.de/dl/fiJekds8nu5srkZRVX1gQ8dd/_examples-01.png)                |
+| Allgemeine Übertragungsfunktion (`\UeFunk`) | ![Allgemeine Übertragungsfunktion](https://syncandshare.lrz.de/dl/fi8mFnJk28xd5sn74Zuu1JLm/_examples-02.png) |
+| M-Glied - Punktsymbol (`\MGlied`)           | ![M-Glied - Punktsymbol](https://syncandshare.lrz.de/dl/fiLyvy6UpNDRHcuuBDiu7C6V/_examples-03.png)           |
+| M-Glied - Kreuzsymbol (`\MGliedVar`)        | ![M-Glied - Kreuzsymbol](https://syncandshare.lrz.de/dl/fiDaymwXz5Pz5pz7ipZYEkP1/_examples-04.png)           |
+| P-Glied (`\PGlied`)                         | ![P-Glied](https://syncandshare.lrz.de/dl/fi5Vu1ne5Lw4FkD5jYPeonJm/_examples-05.png)                         |
+| I-Glied (`\IGlied`)                         | ![I-Glied](https://syncandshare.lrz.de/dl/fiK5HaoFZYBswKAn5nSvavBH/_examples-06.png)                         |
+| D-Glied (`\DGlied`)                         | ![D-Glied](https://syncandshare.lrz.de/dl/fiGcfcyqm67yQGrSGfPE5ip4/_examples-07.png)                         |
+| Totzeitglied (`\TZGlied`)                   | ![Totzeitglied](https://syncandshare.lrz.de/dl/fiBpsbqRvUbJjjWwYeTyYxrm/_examples-08.png)                    |
+| PT1-Glied (`\PTEinsGlied`)                  | ![PT1-Glied](https://syncandshare.lrz.de/dl/fi6uayviR2n26WU3J9GRw43p/_examples-09.png)                       |
+| PT2-Glied (`\PTZweiGlied`)                  | ![PT2-Glied](https://syncandshare.lrz.de/dl/fiFpBtZEoCRbLrT1Bzdaz1dY/_examples-10.png)                       |
+| Zusätzliche Ein- und Ausgänge (`\NeueEA`)   | ![Zusätzliche Ein- und Ausgänge](https://syncandshare.lrz.de/dl/fiV2RmSCnNxkb95msTKkjRDA/_examples-18.png)   |
+| Kennlinienglied (`\KLGlied`)                | ![Kennlinienglied](https://syncandshare.lrz.de/dl/fiEj9YvhVtLtaxyBDEbRiJ55/_examples-11.png)                 |
+| Sättigung (`\Saettigung`)                   | ![Sättigung](https://syncandshare.lrz.de/dl/fiWjj5uhhZsuTwijfFFCiogo/_examples-12.png)                       |
 
 ## Argumente
 `\Verzweigung[<1>]{<2>}{<3>}{<4>}`
