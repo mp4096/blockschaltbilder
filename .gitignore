@@ -9,12 +9,14 @@
 *.fmt
 
 ## Intermediate documents:
+_*.pdf
+*.preview.pdf
+_*.png
 *.dvi
 *-converted-to.*
 # these rules might exclude image files for figures etc.
 # *.ps
 # *.eps
-# *.pdf
 
 ## Bibliography auxiliary files (bibtex/biblatex/biber):
 *.bbl
@@ -157,3 +159,7 @@ pythontex-files-*/
 
 # Latexian
 TSWLatexianTemp*
+
+# Python
+*.pyc
+.idea
