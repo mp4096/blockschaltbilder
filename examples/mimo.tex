@@ -4,7 +4,6 @@
 \providecolor{pantone212}{HTML}{F94F8E}
 
 \begin{tikzpicture}
-
   \UeFunk[align = center, inner sep = 0.5 cm]{mimo}{0, 0}{2 cm}{ %
     Ein MIMO-System:\\[4 pt] %
     4 Ports oben\\ %
@@ -33,13 +32,15 @@
   \draw[pantone212!50,  fill] (mimo--west 3) circle (0.05);
   \draw[pantone212!70,  fill] (mimo--west 4) circle (0.05);
   \draw[pantone212!90,  fill] (mimo--west 5) circle (0.05);
+\end{tikzpicture}
+\clearpage
 
-
+\begin{tikzpicture}
   % Praktisches Beispiel: LFR-Darstellung
-  \UeFunk{strecke}{0, -8}{1.3 cm}{\Large $P$}
+  \UeFunk{strecke}{0, 0}{1.3 cm}{\Large $P$}
   \NeueEA{strecke}{1}{3}{1}{3}
-  \UeFunk{regler}{0, -10}{1.3 cm}{\Large $K$}
-  \UeFunk{unsicherheit}{0, -6}{1.3 cm}{\Large $\Delta$}
+  \UeFunk{regler}{0, -2}{1.3 cm}{\Large $K$}
+  \UeFunk{unsicherheit}{0, +2}{1.3 cm}{\Large $\Delta$}
 
   \draw[thick, -latex'] (strecke--east 2) -- +( 2, 0) node[above, pos=0.7] {$e$};
   \draw[thick, latex'-] (strecke--west 2) -- +(-2, 0) node[above, pos=0.7] {$d$};

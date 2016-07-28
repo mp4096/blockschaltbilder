@@ -1,0 +1,106 @@
+\begin{tikzpicture}
+  \Summationsstelle{sum}{0, 0}{0.4 cm}
+
+  \draw[thick, latex-] (sum) -- +(-2, 0) node[pos = 0.7, above] {$u_1(t)$};
+  \draw[thick, latex-] (sum) -- +(0, -1.2) node[pos = 0.7, left] {$u_2(t)$};
+  \draw[thick, -latex] (sum) -- +(+2, 0) node[pos = 0.7, above] {$y(t)$};
+
+  \node[below right] at (sum.south) {$-$};
+\end{tikzpicture}
+\clearpage
+
+\begin{tikzpicture}
+  \UeFunk{tf}{0, 0}{1.2 cm}{$G(s)$}
+
+  \draw[-latex, thick] (tf) -- +(+2, 0) node[pos = 0.7, above]{$y(t)$};
+  \draw[latex-, thick] (tf) -- +(-2, 0) node[pos = 0.7, above]{$u(t)$};
+\end{tikzpicture}
+\clearpage
+
+\begin{tikzpicture}
+  \MGlied{mult}{0, 0}{1.2 cm}{$K$}
+  \NeueEA{mult}{1}{1}{1}{2}
+
+  \draw[thick, latex-] (mult--west 1) -- +(-1.4, 0) node[pos = 0.7, above] {$u_1(t)$};
+  \draw[thick, latex-] (mult--west 2) -- +(-1.4, 0) node[pos = 0.7, below] {$u_2(t)$};
+  \draw[thick, -latex] (mult--east 1) -- +(+1.4, 0) node[pos = 0.7, above] {$y(t)$};
+\end{tikzpicture}
+\clearpage
+
+\begin{tikzpicture}
+  \MGliedVar{mult}{0, 0}{1.2 cm}{$K$}
+  \NeueEA{mult}{1}{1}{1}{2}
+
+  \draw[thick, latex-] (mult--west 1) -- +(-1.4, 0) node[pos = 0.7, above] {$u_1(t)$};
+  \draw[thick, latex-] (mult--west 2) -- +(-1.4, 0) node[pos = 0.7, below] {$u_2(t)$};
+  \draw[thick, -latex] (mult--east 1) -- +(+1.4, 0) node[pos = 0.7, above] {$y(t)$};
+\end{tikzpicture}
+\clearpage
+
+\begin{tikzpicture}
+  \PGlied{gain}{0, 0}{1.2 cm}{$K$}
+
+  \draw[-latex, thick] (gain) -- +(+2, 0) node[pos = 0.7, above]{$y(t)$};
+  \draw[latex-, thick] (gain) -- +(-2, 0) node[pos = 0.7, above]{$u(t)$};
+\end{tikzpicture}
+\clearpage
+
+\begin{tikzpicture}
+  \IGlied{int}{0, 0}{1.2 cm}{$K$}
+
+  \draw[-latex, thick] (int) -- +(+2, 0) node[pos = 0.7, above]{$y(t)$};
+  \draw[latex-, thick] (int) -- +(-2, 0) node[pos = 0.7, above]{$u(t)$};
+\end{tikzpicture}
+\clearpage
+
+\begin{tikzpicture}
+  \DGlied{diff}{0, 0}{1.2 cm}{$K$}
+
+  \draw[-latex, thick] (diff) -- +(+2, 0) node[pos = 0.7, above]{$y(t)$};
+  \draw[latex-, thick] (diff) -- +(-2, 0) node[pos = 0.7, above]{$u(t)$};
+\end{tikzpicture}
+\clearpage
+
+\begin{tikzpicture}
+  \TZGlied{tz}{0, 0}{1.2 cm}{$K$}{$T_{\mathrm{t}}$}
+
+  \draw[-latex, thick] (tz) -- +(+2, 0) node[pos = 0.7, above]{$y(t)$};
+  \draw[latex-, thick] (tz) -- +(-2, 0) node[pos = 0.7, above]{$u(t)$};
+\end{tikzpicture}
+\clearpage
+
+\begin{tikzpicture}
+  \PTEinsGlied{pt1}{0, 0}{1.2 cm}{$K$}{$T$}
+
+  \draw[-latex, thick] (pt1) -- +(+2, 0) node[pos = 0.7, above]{$y(t)$};
+  \draw[latex-, thick] (pt1) -- +(-2, 0) node[pos = 0.7, above]{$u(t)$};
+\end{tikzpicture}
+\clearpage
+
+\begin{tikzpicture}
+  \PTZweiGlied{pt2}{0, 0}{1.2 cm}{$K$}{$T, d$}
+
+  \draw[-latex, thick] (pt2) -- +(+2, 0) node[pos = 0.7, above]{$y(t)$};
+  \draw[latex-, thick] (pt2) -- +(-2, 0) node[pos = 0.7, above]{$u(t)$};
+\end{tikzpicture}
+\clearpage
+
+\begin{tikzpicture}
+  \KLGlied{kl}{0, 0}{1.2 cm}{ %
+    \draw[thin, -latex] (-1, 0) -- (1, 0);
+    \draw[thin, -latex] (0, -1) -- (0, 1);
+    \draw[domain=-1:1, smooth, variable=\x, thick] plot ({\x},{0.5*cos(\x*180)});
+  }{$\pm 1$}{}
+
+  \draw[-latex, thick] (kl) -- +(+2, 0) node[pos = 0.7, above]{$y(t)$};
+  \draw[latex-, thick] (kl) -- +(-2, 0) node[pos = 0.7, above]{$u(t)$};
+\end{tikzpicture}
+\clearpage
+
+\begin{tikzpicture}
+  \Saettigung{sat}{0, 0}{1.2 cm}{$\pm u_\mathrm{max}$}{}
+
+  \draw[-latex, thick] (sat) -- +(+2, 0) node[pos = 0.7, above]{$y(t)$};
+  \draw[latex-, thick] (sat) -- +(-2, 0) node[pos = 0.7, above]{$u(t)$};
+\end{tikzpicture}
+\clearpage
