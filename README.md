@@ -1,6 +1,7 @@
 ![logo](logo.png)
 _Einfache Blockschaltbilder in LaTeX/TikZ_
 
+
 ## Installation
 Einfach die Datei `src/blockschaltbilder.tex` in das Dokument hinzufügen, z.B.:
 
@@ -9,6 +10,7 @@ Einfach die Datei `src/blockschaltbilder.tex` in das Dokument hinzufügen, z.B.:
 ```
 
 Anwendungsbeispiele für die Makros sind in der Datei `examples/_examples.tex` zu finden.
+
 
 ## Verfügbare Makros
 | Makro                                       | Beispiel                                                                                                     |
@@ -27,6 +29,7 @@ Anwendungsbeispiele für die Makros sind in der Datei `examples/_examples.tex` z
 | Zusätzliche Ein- und Ausgänge (`\NeueEA`)   | ![Zusätzliche Ein- und Ausgänge](https://syncandshare.lrz.de/dl/fiV2RmSCnNxkb95msTKkjRDA/_examples-18.png)   |
 | Kennlinienglied (`\KLGlied`)                | ![Kennlinienglied](https://syncandshare.lrz.de/dl/fiEj9YvhVtLtaxyBDEbRiJ55/_examples-11.png)                 |
 | Sättigung (`\Saettigung`)                   | ![Sättigung](https://syncandshare.lrz.de/dl/fiWjj5uhhZsuTwijfFFCiogo/_examples-12.png)                       |
+
 
 ## Argumente
 `\Verzweigung[<1>]{<2>}{<3>}{<4>}`
@@ -123,8 +126,10 @@ Anwendungsbeispiele für die Makros sind in der Datei `examples/_examples.tex` z
 
 Für weitere Informationen siehe `_examples.tex`.
 
+
 ## Benutzung mit TikzEdt
-Falls man TikzEdt oder andere WYSIWYG-Tools benutzt, kann es sinnvoll sein, die Definition der Koordinaten und die Definition der Blöcke zu trennen, z.B.:
+Falls man TikzEdt oder andere WYSIWYG-Tools benutzt, kann es sinnvoll sein,
+die Definition der Koordinaten und die Definition der Blöcke zu trennen, z.B.:
 
 ```tex
 \coordinate (i glied 1) at (0, 0);
@@ -136,7 +141,46 @@ Falls man TikzEdt oder andere WYSIWYG-Tools benutzt, kann es sinnvoll sein, die 
 \draw[thick, -latex'] (i glied 1) -- (i glied 2);
 ```
 
-Obwohl diese Syntax umständlicher aussieht, hat sie den Vorteil, dass die Koordinaten als solche vom TikzEdt-Parser erkannt werden. Die werden also im Overlay markiert und man kann in der Vorschau Blöcke interaktiv positionieren.
+Obwohl diese Syntax umständlicher aussieht, hat sie den Vorteil,
+dass die Koordinaten als solche vom TikzEdt-Parser erkannt werden.
+Die werden also im Overlay markiert und man kann in der Vorschau Blöcke interaktiv positionieren.
+
+
+## Boilerplate-Code-Generator
+Um den Tippaufwand bei der Erstellung von Blockschaltbildern zu minimieren,
+kann man den mitgelieferten Boilerplate-Code-Generator verwenden.
+Dafür legt man eine Textdatei mit Erweiterung `.bsb` an und spezifiziert
+das Blockschaltbild wie folgt:
+```yaml
+Skizze: |
+    C1  S1  S2  I1  I2  C2
+                P1
+                P2
+
+Verbindungen: |
+    C1 - S1
+    S1 - S2
+    S2 - I1
+    I1 - I2
+    I1 - P1
+    I2 - C2
+    I2 - P2
+    P1 - S2
+    P2 - S1
+
+Namen: |
+    C1: eingang
+    C2: ausgang
+    S1: sum 1
+    S2: sum 2
+    I1: int 1
+    I2: int 2
+    P1: p 1
+    P2: p 2
+```
+Anschließend kann man mit `python generate_boilerplate.py` diese `bsb`-Datei in eine
+LaTeX/TikZ-Datei konvertieren. Dabei wird nach jedem Block mit mehreren Ausgängen automatisch
+eine Verzweigung platziert. Weitere Informationen finden Sie im Quellcode.
 
 
 ## Empfohlene Größen
