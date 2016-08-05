@@ -112,7 +112,7 @@ Anwendungsbeispiele für die Makros sind in der Datei `examples/_examples.tex` z
 * Beschriftung oben links
 * Beschriftung oben rechts
 
-`\Sättigung[<1>]{<2>}{<3>}{<4>}{<5>}{<6>}`
+`\Saettigung[<1>]{<2>}{<3>}{<4>}{<5>}{<6>}`
 
 1. Optionale TikZ-Eigenschaften (z.B. Farbe)
 * Name des TikZ-Knotens (`node`)
