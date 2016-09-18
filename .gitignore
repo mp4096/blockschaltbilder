@@ -163,3 +163,8 @@ TSWLatexianTemp*
 # Python
 *.pyc
 .idea
+.coverage
+*.egg-info/*
+build/*
+dist/*
+htmlcov/*
