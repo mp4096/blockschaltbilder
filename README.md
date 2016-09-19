@@ -5,6 +5,7 @@ _Einfache Blockschaltbilder in LaTeX/TikZ_
 [![Build Status](https://travis-ci.org/mp4096/blockschaltbilder.svg?branch=master)](https://travis-ci.org/mp4096/blockschaltbilder)
 [![Coverage Status](https://coveralls.io/repos/github/mp4096/blockschaltbilder/badge.svg?branch=master)](https://coveralls.io/github/mp4096/blockschaltbilder?branch=master)
 
+
 ## Installation
 Einfach die Datei `src/blockschaltbilder.tex` in das Dokument hinzufügen, z.B.:
 
@@ -154,6 +155,7 @@ Um den Tippaufwand bei der Erstellung von Blockschaltbildern zu minimieren,
 kann man den mitgelieferten Boilerplate-Code-Generator verwenden.
 Dafür legt man eine Textdatei mit Erweiterung `.bsb` an und spezifiziert
 das Blockschaltbild wie folgt:
+
 ```yaml
 Skizze: |
     C1  S1  S2  I1  I2  C2
@@ -181,10 +183,12 @@ Namen: |
     P1: p 1
     P2: p 2
 ```
-Anschließend kann man mit `python generate_boilerplate.py` diese `bsb`-Datei in eine
+
+Anschließend kann man mit dem Befehl `python generate_boilerplate.py .` diese `bsb`-Datei in eine
 LaTeX/TikZ-Datei konvertieren. Dabei wird nach jedem Block mit mehreren Ausgängen automatisch
 eine Verzweigung platziert. Weitere Informationen finden Sie im Quellcode.
 
+Das Programm setzt Python 3.5 voraus!
 
 ## Empfohlene Größen
 | Element                         | Größe    | TikZ-Eigenschaften                                |
