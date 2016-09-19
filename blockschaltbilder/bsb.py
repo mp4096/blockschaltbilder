@@ -617,6 +617,7 @@ class Blockschaltbild:
                 Name of the new joint.
             xy: list or tuple of floats
                 (x, y)-coordinates of the new joint.
+
             """
 
             # Use default joint size
@@ -748,6 +749,46 @@ class Blockschaltbild:
                 # Rename the block
                 self.rename_block(old_name, new_name)
 
+    def export_to_text(self, num_fmt="g"):
+        """Export the Blockschaltbild to a text (str with linebreaks).
+
+        Parameters
+        ----------
+        num_fmt : str, optional
+            Specification of the numbers format, e.g. '.4f'.
+
+        Returns
+        -------
+        str
+            Text with the exported Blockschaltbild.
+
+        """
+
+        coordinates = "\n".join(b.get_tikz_coordinate(num_fmt)
+                                for b in self._get_sorted_blocks())
+
+        # Get all block definitions, i.e. including coordinates (`None`)
+        all_blocks = (b.get_latex_definition() for b in self._get_sorted_blocks())
+        # Leave only real block definitions
+        blocks = "\n".join(filter(lambda e: e is not None, all_blocks))
+
+        connections = "\n".join("\\draw[{:s}] ({:s}) -- ({:s});".format(st, fb, tb)
+                                for fb, tb, st in self._get_sorted_connections_list())
+
+        return "\n".join([
+            "\\begin{tikzpicture}\n\n",  # place the opening tag
+            "% <coordinates>",  # export coordinates
+            coordinates,
+            "% </coordinates>\n\n",
+            "% <blocks>",  # export block definitions
+            blocks,
+            "% </blocks>\n\n",
+            "% <connections>",  # export connections
+            connections,
+            "% </connections>\n\n",
+            "\\end{tikzpicture}\n",  # place the closing tag
+            ])
+
     def export_to_file(self, filename, num_fmt="g"):
         """Export the Blockschaltbild to a TikZ file.
 
@@ -762,38 +803,4 @@ class Blockschaltbild:
         """
 
         with codecs.open(filename, 'w', encoding="utf-8") as f:
-            # Place the opening tag
-            f.write(r"\begin{tikzpicture}")
-            f.write("\n\n\n")
-
-            # Export coordinates
-            f.write(r"% <coordinates>")
-            f.write("\n")
-            for b in self._get_sorted_blocks():
-                f.write(b.get_tikz_coordinate(num_fmt))
-                f.write("\n")
-            f.write(r"% </coordinates>")
-            f.write("\n\n\n")
-
-            # Export block definitions
-            f.write(r"% <blocks>")
-            f.write("\n")
-            for b in self._get_sorted_blocks():
-                if b.get_latex_definition() is not None:
-                    f.write(b.get_latex_definition())
-                    f.write("\n")
-            f.write(r"% </blocks>")
-            f.write("\n\n\n")
-
-            # Export connections
-            f.write(r"% <connections>")
-            f.write("\n")
-            for from_block, to_block, style in self._get_sorted_connections_list():
-                f.write("\\draw[{:s}] ({:s}) -- ({:s});".format(style, from_block, to_block))
-                f.write("\n")
-            f.write(r"% </connections>")
-            f.write("\n\n\n")
-
-            # Place the closing tag
-            f.write(r"\end{tikzpicture}")
-            f.write("\n")
+            f.write(self.export_to_text(num_fmt))
