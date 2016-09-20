@@ -1,6 +1,6 @@
 from .bsb import Blockschaltbild
 import codecs
-import fnmatch
+from fnmatch import fnmatch
 import os
 import re
 
@@ -170,7 +170,7 @@ def _convert_single_file(filename):
     """
 
     # Check file extension
-    if not fnmatch.fnmatch(filename, '*.bsb'):
+    if not fnmatch(filename, '*.bsb'):
         raise ValueError("The input file must have a 'bsb' extension")
 
     # Open this file and read all its contents into a list
@@ -199,10 +199,8 @@ def _find_bsb_files(root_directory):
 
     """
     for root, dirs, files in os.walk(root_directory):
-        for basename in files:
-            if fnmatch.fnmatch(basename, '*.bsb'):
-                filename = os.path.join(root, basename)
-                yield filename
+        for basename in filter(lambda n: fnmatch(n, "*.bsb"), files):
+            yield os.path.join(root, basename)
 
 
 def convert_to_tikz(paths):
