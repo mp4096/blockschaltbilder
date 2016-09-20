@@ -8,7 +8,7 @@ setup(name="Blockschaltbilder",
       author_email="mikhail.pak@tum.de",
       url="https://github.com/mp4096/blockschaltbilder",
       packages=["blockschaltbilder"],
-      install_requires=["numpy", "PyYAML"],
+      install_requires=["numpy"],
       license="MIT",
       test_suite="blockschaltbilder.tests",
 )

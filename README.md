@@ -156,13 +156,13 @@ kann man den mitgelieferten Boilerplate-Code-Generator verwenden.
 Dafür legt man eine Textdatei mit Erweiterung `.bsb` an und spezifiziert
 das Blockschaltbild wie folgt:
 
-```yaml
-Skizze: |
+```
+Skizze:
     C1  S1  S2  I1  I2  C2
                 P1
                 P2
 
-Verbindungen: |
+Verbindungen:
     C1 - S1
     S1 - S2
     S2 - I1
@@ -173,7 +173,7 @@ Verbindungen: |
     P1 - S2
     P2 - S1
 
-Namen: |
+Namen:
     C1: eingang
     C2: ausgang
     S1: sum 1

@@ -3,7 +3,6 @@ import codecs
 import fnmatch
 import os
 import re
-import yaml
 
 
 """Frontend file parser for Blockschaltbilder."""
@@ -12,16 +11,161 @@ import yaml
 # Specify exports
 __all__ = ["convert_to_tikz"]
 
-# Specify German-English equivalents for keys
-_GERMAN_KEYS_TO_ENGLISH = {
-    "skizze": "sketch",
-    "verbindungen": "connections",
-    "namen": "names",
-    }
+# Define regexen for the detection of file sections
+_PATTERN_SKETCH = r"(?:sketch|skizze)\:$"
+_RE_SKETCH = re.compile(_PATTERN_SKETCH, re.IGNORECASE)
+_PATTERN_CONNECTIONS = r"(?:connections|verbindungen)\:$"
+_RE_CONNECTIONS = re.compile(_PATTERN_CONNECTIONS, re.IGNORECASE)
+_PATTERN_NAMES = r"(?:names|namen)\:$"
+_RE_NAMES = re.compile(_PATTERN_NAMES, re.IGNORECASE)
+
+
+# We use a state machine to parse the *.bsb files
+class Reader:
+    """State machine for reading *.bsb files."""
+
+    def __init__(self):
+        """Creates a new reader state machine."""
+
+        # Initialise with inactive state
+        self.transit_to(Inactive)
+
+        # Initialise accumulator lists
+        self.sketch = []
+        self.connections = []
+        self.names = []
+
+    def transit_to(self, new_state):
+        """Transit to new state."""
+        self._state = new_state
+
+    def read_line(self, line):
+        """Read one line.
+
+        This method reads one line and decides what to do:
+        Depending on the line contents, it either performs a transition to
+        new state (file section) or stores the line in the appropriate
+        state-dependent accumulator list.
+
+        Parameters
+        ----------
+        line : str
+            One line of a *.bsb file.
+
+        """
+
+        # We strip the line only for tag matching and early exit;
+        # the original line is stored in accumulator lists in order to
+        # preserve indentation.
+        stripped_line = line.strip()
+
+        # Early return on empty lines
+        if not stripped_line:
+            return
+
+        # Try to match section tags and transit to the corresponding state;
+        # otherwise just chomp this line.
+        if _RE_SKETCH.match(stripped_line) is not None:
+            self.transit_to(Sketch)
+        elif _RE_CONNECTIONS.match(stripped_line) is not None:
+            self.transit_to(Connections)
+        elif _RE_NAMES.match(stripped_line) is not None:
+            self.transit_to(Names)
+        else:
+            self._store(line)
+
+    def _store(self, line):
+        """Stores a line in an appropriate accumulator list.
+
+        Delegates this to the state's static method.
+
+        Parameters
+        ----------
+        line : str
+            One line of a *.bsb file.
+
+        """
+
+        return self._state.store_line(self, line)
+
+
+# Classes representing reader's states; self-explanatory
+class ReaderState:
+    """Parent class for reader state."""
+
+    @staticmethod
+    def store_line(reader, line):
+        raise NotImplementedError()
+
+
+class Inactive(ReaderState):
+    @staticmethod
+    def store_line(reader, line):
+        pass
+
+
+class Sketch(ReaderState):
+    @staticmethod
+    def store_line(reader, line):
+        reader.sketch.append(line)
+
+
+class Connections(ReaderState):
+    @staticmethod
+    def store_line(reader, line):
+        reader.connections.append(line)
+
+
+class Names(ReaderState):
+    @staticmethod
+    def store_line(reader, line):
+        reader.names.append(line)
+
+
+def _convert_text(lines):
+    """Create a Blockschaltbild from text.
+
+    Parameters
+    ----------
+    lines : list of str
+        Text lines with the Blockschaltbild specification.
+
+    Returns
+    -------
+    Blockschaltbild
+        A block diagram created from text.
+
+    """
+
+    # Set current status to inactive
+    reader = Reader()
+
+    # Read the text line by line
+    for l in lines:
+        reader.read_line(l)
+
+    # Create an empty block diagram
+    bsb = Blockschaltbild()
+    # Import sketch; note that it is mandatory since it defines the blocks
+    if reader.sketch:
+        bsb.import_sketch(reader.sketch)
+    else:
+        raise ValueError("The input file must contain a sketch")
+    # If the connections are specified, import them
+    if reader.connections:
+        bsb.import_connections(reader.connections)
+    # If new names are specified, rename blocks
+    if reader.names:
+        bsb.import_names(reader.names)
+
+    # Add auto joints instead of blocks with multiple outgoing connections
+    bsb.add_auto_joints()
+
+    return bsb
 
 
 def _convert_single_file(filename):
-    """Convert a single file to a *.tex file.
+    """Convert a single .bsb file into a boilerplate .tex file.
 
     Parameters
     ----------
@@ -34,39 +178,13 @@ def _convert_single_file(filename):
     if not fnmatch.fnmatch(filename, '*.bsb'):
         raise ValueError("The input file must have a 'bsb' extension")
 
-    # Create an empty list for the modified contents of the file
-    modified_lines = []
-    # Open the file and save its modified contents line by line
+    # Open this file and read all its contents into a list
     with codecs.open(filename, 'r', encoding="utf-8") as f:
-        for line in f:
-            # Replace hard tabs with soft tabs
-            line = line.replace("\t", " "*4).rstrip()
-            # Specify chomping indent of 1 for all multiline string literals
-            # This is required for parsing sketches correctly
-            modified_lines.append(re.sub(r":\s*\|$", r": |1", line))
-    # Create an empty block diagram and a dictionary for the contents of the file
-    bsb = Blockschaltbild()
-    contents = {}
-    # Iterate through the modified lines
-    for key, value in yaml.load("\n".join(modified_lines)).items():
-        # Transform German keys into English analogues
-        if key.lower() in _GERMAN_KEYS_TO_ENGLISH:
-            normalised_key = _GERMAN_KEYS_TO_ENGLISH[key.lower()]
-        else:
-            normalised_key = key.lower()
-        # Add the contents to the dict
-        contents[normalised_key] = value
+        lines = f.readlines()
 
-    # Import sketch; note that it is mandatory since it defines the blocks
-    bsb.import_sketch(contents["sketch"].splitlines())
-    # If the connections are specified, import them
-    if "connections" in contents:
-        bsb.import_connections(contents["connections"].splitlines())
-    # If new names are specified, rename blocks
-    if "names" in contents:
-        bsb.import_names(contents["names"].splitlines())
-    # Add auto joints instead of blocks with multiple outgoing connections
-    bsb.add_auto_joints()
+    # Convert them into a Blockschaltbild with automatically placed joints
+    bsb = _convert_text(lines)
+
     # Export to a *.tex file
     bsb.export_to_file(re.sub(r"\.bsb$", ".tex", filename))
 
