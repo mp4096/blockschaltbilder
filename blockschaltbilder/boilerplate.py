@@ -54,14 +54,9 @@ class Reader:
 
         """
 
-        # We strip the line only for tag matching and early exit;
-        # the original line is stored in accumulator lists in order to
-        # preserve indentation.
+        # We strip the line only for tag matching; the original line is
+        # stored in accumulator lists in order to preserve indentation.
         stripped_line = line.strip()
-
-        # Early return on empty lines
-        if not stripped_line:
-            return
 
         # Try to match section tags and transit to the corresponding state;
         # otherwise just chomp this line.
