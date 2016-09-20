@@ -135,9 +135,9 @@ def _convert_text(lines):
     # Set current status to inactive
     reader = Reader()
 
-    # Read the text line by line
+    # Read the text line by line, replacing hard tabs with 4 whitespaces
     for l in lines:
-        reader.read_line(l)
+        reader.read_line(l.replace("\t", " "*4))
 
     # Create an empty block diagram
     bsb = Blockschaltbild()
