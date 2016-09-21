@@ -216,7 +216,12 @@ def convert_to_tikz(paths):
     for p in paths:
         if os.path.isdir(p):
             for file in _find_bsb_files(p):
-                _convert_single_file(file)
+                try:
+                    _convert_single_file(file)
+                except ValueError as e:
+                    print("ValueError in {:s}:".format(file), e)
+                except TypeError as e:
+                    print("TypeError in {:s}:".format(file), e)
         elif os.path.isfile(p):
             _convert_single_file(p)
         else:
