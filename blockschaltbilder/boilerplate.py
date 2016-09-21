@@ -219,9 +219,9 @@ def convert_to_tikz(paths):
                 try:
                     _convert_single_file(file)
                 except ValueError as e:
-                    print("ValueError in {0}: ".format(file), e)
+                    print("ValueError in {:s}:".format(file), e)
                 except TypeError as e:
-                    print("TypeError in {0}: ".format(file), e)
+                    print("TypeError in {:s}:".format(file), e)
         elif os.path.isfile(p):
             _convert_single_file(p)
         else:
