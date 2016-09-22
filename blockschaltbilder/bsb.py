@@ -633,6 +633,10 @@ class Blockschaltbild:
             # I don't want to implement fancy smart scalar/vector detection here
             self._adj_mat[old_idx, -1] = _SCALAR_EDGE
 
+        # Return if the Blockschaltbild has no blocks
+        if self.num_blocks == 0:
+            return
+
         # Now we have to go through the adjacency matrix and
         # add an auto joint for each row with multiple outgoing connections.
         #
@@ -679,12 +683,12 @@ class Blockschaltbild:
         """
 
         # Delete all empty lines at the bottom of the sketch
-        while not sketch[-1].strip():
+        while len(sketch) > 0 and not sketch[-1].strip():
             sketch.pop()
         # Reverse the list; we shall process the sketch lines upwards
         sketch.reverse()
         # Delete all empty lines at the top of the sketch
-        while not sketch[-1].strip():
+        while len(sketch) > 0 and not sketch[-1].strip():
             sketch.pop()
 
         # Loop through lines

@@ -139,6 +139,12 @@ class TestBlockschaltbildBasics(unittest.TestCase):
         self.assertEqual(bsb.num_blocks, 4)
         self.assertEqual(bsb.get_block("ajnt1").block_type, "Verzweigung")
 
+    def test_auto_joints_empty_bsb(self):
+        """Test auto joints placement if no blocks are present."""
+        bsb = Blockschaltbild()
+        # Just return silently and raise no exception
+        bsb.add_auto_joints()
+
     def test_import_sketch(self):
         """Test import of a sketch."""
         bsb = Blockschaltbild()
@@ -159,11 +165,17 @@ class TestBlockschaltbildBasics(unittest.TestCase):
         self.assertEqual(bsb.get_block("PTZ1").block_type, "PTZweiGlied")
         self.assertEqual(bsb.get_block("D31415").block_type, "DGlied")
 
-    def test_import_invalid_sketch(self):
-        """Test import of an invalid sketch -- must raise exception."""
+    def test_import_invalid_sketch_duplications(self):
+        """Test import of a sketch with duplicates -- must raise exception."""
         bsb = Blockschaltbild()
         sketch = ["I1 I1",]
         self.assertRaises(ValueError, bsb.import_sketch, sketch)
+
+    def test_import_invalid_sketch_empty(self):
+        """Test import of an empty sketch -- must return silently."""
+        bsb = Blockschaltbild()
+        sketch = [" ", " ", "\t", ]
+        bsb.import_sketch(sketch)
 
     def test_import_names(self):
         """Test import of names."""
