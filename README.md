@@ -151,44 +151,11 @@ Die werden also im Overlay markiert und man kann in der Vorschau Blöcke interak
 
 
 ## Boilerplate-Code-Generator
-Um den Tippaufwand bei der Erstellung von Blockschaltbildern zu minimieren,
-kann man den mitgelieferten Boilerplate-Code-Generator verwenden.
-Dafür legt man eine Textdatei mit Erweiterung `.bsb` an und spezifiziert
-das Blockschaltbild wie folgt:
+Um den Tippaufwand zu reduzieren, kann man den mitgelieferten
+Boilerplate-Code-Generator verwenden. Die ausführlichere Dokumentation können Sie
+[hier](https://github.com/mp4096/blockschaltbilder/blob/master/docs/boilerplate.md)
+nachlesen. 
 
-```
-Skizze:
-    C1  S1  S2  I1  I2  C2
-                P1
-                P2
-
-Verbindungen:
-    C1 - S1
-    S1 - S2
-    S2 - I1
-    I1 - I2
-    I1 - P1
-    I2 - C2
-    I2 - P2
-    P1 - S2
-    P2 - S1
-
-Namen:
-    C1: eingang
-    C2: ausgang
-    S1: sum 1
-    S2: sum 2
-    I1: int 1
-    I2: int 2
-    P1: p 1
-    P2: p 2
-```
-
-Anschließend kann man mit dem Befehl `python generate_boilerplate.py .` diese `bsb`-Datei in eine
-LaTeX/TikZ-Datei konvertieren. Dabei wird nach jedem Block mit mehreren Ausgängen automatisch
-eine Verzweigung platziert. Weitere Informationen finden Sie im Quellcode.
-
-Das Programm setzt Python 3.5 voraus!
 
 ## Empfohlene Größen
 | Element                         | Größe    | TikZ-Eigenschaften                                |
