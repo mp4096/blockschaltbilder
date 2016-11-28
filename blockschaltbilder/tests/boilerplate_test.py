@@ -1,8 +1,8 @@
+"""Test suit for the Blockschaltbild boilerplate generator."""
+
+
 import unittest
 from ..boilerplate import _convert_text
-
-
-"""Test suit for the Blockschaltbild boilerplate generator."""
 
 
 class TestBoilerplate(unittest.TestCase):

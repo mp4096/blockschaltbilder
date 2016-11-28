@@ -1,8 +1,8 @@
+"""Test suit for the Blockschaltbild boilerplate generator."""
+
+
 import unittest
 from ..bsb import Blockschaltbild, BlockschaltbildCoordinate, Block
-
-
-"""Test suit for the Blockschaltbild boilerplate generator."""
 
 
 class TestBlock(unittest.TestCase):

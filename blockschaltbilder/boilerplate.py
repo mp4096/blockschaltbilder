@@ -1,11 +1,11 @@
+"""Frontend file parser for Blockschaltbilder."""
+
+
 from .bsb import Blockschaltbild
 import codecs
 import fnmatch
 import os
 import re
-
-
-"""Frontend file parser for Blockschaltbilder."""
 
 
 # Specify exports

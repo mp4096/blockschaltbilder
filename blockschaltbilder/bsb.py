@@ -1,10 +1,10 @@
+"""This module contains the Blockschaltbild class."""
+
+
 from abc import ABCMeta, abstractmethod
 import codecs
 import numpy as np
 import re
-
-
-"""This module contains the Blockschaltbild class."""
 
 
 # Export only the Blockschaltbild class
