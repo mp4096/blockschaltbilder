@@ -1,6 +1,6 @@
 from .bsb import Blockschaltbild
 import codecs
-from fnmatch import fnmatch
+import fnmatch
 import os
 import re
 
@@ -170,7 +170,7 @@ def _convert_single_file(filename):
     """
 
     # Check file extension
-    if not fnmatch(filename, '*.bsb'):
+    if not fnmatch.fnmatch(filename, '*.bsb'):
         raise ValueError("The input file must have a 'bsb' extension")
 
     # Open this file and read all its contents into a list
@@ -198,8 +198,8 @@ def _find_bsb_files(root_directory):
         Full filename to a *.bsb file.
 
     """
-    for root, dirs, files in os.walk(root_directory):
-        for basename in filter(lambda n: fnmatch(n, "*.bsb"), files):
+    for root, _, files in os.walk(root_directory):
+        for basename in fnmatch.filter(files, "*.bsb"):
             yield os.path.join(root, basename)
 
 
