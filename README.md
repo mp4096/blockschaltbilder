@@ -3,6 +3,7 @@ _Einfache Blockschaltbilder in LaTeX/TikZ_
 
 
 [![Build Status](https://travis-ci.org/mp4096/blockschaltbilder.svg?branch=master)](https://travis-ci.org/mp4096/blockschaltbilder)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/c3e7f7b205894a1cbd7ee9a969f2c13b)](https://www.codacy.com/app/mikhail-pak/blockschaltbilder?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=mp4096/blockschaltbilder&amp;utm_campaign=Badge_Grade)
 [![Coverage Status](https://coveralls.io/repos/github/mp4096/blockschaltbilder/badge.svg?branch=master)](https://coveralls.io/github/mp4096/blockschaltbilder?branch=master)
 
 
@@ -154,7 +155,7 @@ Die werden also im Overlay markiert und man kann in der Vorschau Blöcke interak
 Um den Tippaufwand zu reduzieren, kann man den mitgelieferten
 Boilerplate-Code-Generator verwenden. Die ausführlichere Dokumentation können Sie
 [hier](https://github.com/mp4096/blockschaltbilder/blob/master/docs/boilerplate.md)
-nachlesen. 
+nachlesen.
 
 
 ## Empfohlene Größen
