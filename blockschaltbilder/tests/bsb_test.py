@@ -142,8 +142,9 @@ class TestBlockschaltbildBasics(unittest.TestCase):
     def test_auto_joints_empty_bsb(self):
         """Test auto joints placement if no blocks are present."""
         bsb = Blockschaltbild()
-        # Just return silently and raise no exception
+        # Must run without exceptions
         bsb.add_auto_joints()
+        self.assertEqual(bsb.num_blocks, 0)
 
     def test_import_sketch(self):
         """Test import of a sketch."""
@@ -176,6 +177,7 @@ class TestBlockschaltbildBasics(unittest.TestCase):
         bsb = Blockschaltbild()
         sketch = [" ", " ", "\t", ]
         bsb.import_sketch(sketch)
+        self.assertEqual(bsb.num_blocks, 0)
 
     def test_import_names(self):
         """Test import of names."""

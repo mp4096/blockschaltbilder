@@ -727,10 +727,7 @@ class Blockschaltbild:
                 b_from = m.group("from_id") + m.group("from_num")
                 b_to = m.group("to_id") + m.group("to_num")
                 # Distinguish between scalar and vector connections
-                if m.group("line_type") == "=":
-                    vector = True
-                else:
-                    vector = False
+                vector = bool(m.group("line_type") == "=")
                 # Add the connection to our block diagram object
                 self.add_connection(b_from, b_to, vector)
 

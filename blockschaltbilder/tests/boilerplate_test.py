@@ -1,6 +1,5 @@
 import unittest
 from ..boilerplate import _convert_text
-from ..bsb import Blockschaltbild
 
 
 """Test suit for the Blockschaltbild boilerplate generator."""
