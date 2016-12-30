@@ -8,5 +8,6 @@ install:
   - pip install numpy pyyaml
   - pip install coverage coveralls # for CI
 script:
+  - python ./examples/generate_images.py
   - coverage run --source=blockschaltbilder setup.py test
 after_success: coveralls
