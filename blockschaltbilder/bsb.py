@@ -12,7 +12,8 @@ __all__ = ["Blockschaltbild"]
 
 # Constant IDs for scalar-typed and vector-typed connections
 # Please do not modify these!
-# And in case you do, these must be unique, positive, int numbers
+# And in case you do, these must be unique, positive, int numbers;
+# furthermore, `_VECTOR_EDGE` must be greater than `_SCALAR_EDGE`
 _SCALAR_EDGE = 1
 _VECTOR_EDGE = 2
 
@@ -647,7 +648,7 @@ class Blockschaltbild:
         # is repeated. If no, we break out of the while loop.
         while True:
             # First, for each row check if it has multiple outgoing connections
-            has_multiple_connections = np.sum(self._adj_mat, axis=1) > _SCALAR_EDGE
+            has_multiple_connections = np.sum(self._adj_mat >= _SCALAR_EDGE, axis=1) > 1
             # Second, for each row check if it corresponds to a non-joint block
             is_not_a_joint = [b.block_type != "Verzweigung" for b in self._blocks]
             # Now make an element-wise AND of these two lists

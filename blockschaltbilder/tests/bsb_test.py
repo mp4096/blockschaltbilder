@@ -139,6 +139,27 @@ class TestBlockschaltbildBasics(unittest.TestCase):
         self.assertEqual(bsb.num_blocks, 4)
         self.assertEqual(bsb.get_block("ajnt1").block_type, "Verzweigung")
 
+    def test_auto_joints_vector_no_auto_joint(self):
+        """Auto joints placement should not be triggered by a single vector connection."""
+        bsb = Blockschaltbild()
+        bsb.add_block("PGlied", "block 1", (0, 0))
+        bsb.add_block("IGlied", "block 2", (1, 0))
+        bsb.add_connection("block 1", "block 2", is_vector=True)
+        bsb.add_auto_joints()
+        self.assertEqual(bsb.num_blocks, 2)
+
+    def test_auto_joints_vector(self):
+        """Auto joints placement should work for multiple vector connections."""
+        bsb = Blockschaltbild()
+        bsb.add_block("PGlied", "block 1", (0, 0))
+        bsb.add_block("IGlied", "block 2", (1, 0))
+        bsb.add_block("IGlied", "block 3", (1, 1))
+        bsb.add_connection("block 1", "block 2", is_vector=True)
+        bsb.add_connection("block 1", "block 3", is_vector=True)
+        bsb.add_auto_joints()
+        self.assertEqual(bsb.num_blocks, 4)
+        self.assertEqual(bsb.get_block("ajnt1").block_type, "Verzweigung")
+
     def test_auto_joints_empty_bsb(self):
         """Test auto joints placement if no blocks are present."""
         bsb = Blockschaltbild()
