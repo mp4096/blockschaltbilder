@@ -17,7 +17,8 @@ __all__ = ["Blockschaltbild"]
 _SCALAR_EDGE = 1
 _VECTOR_EDGE = 2
 
-# Const dict specifying how many additional parameters are required by each block type
+# Immutable dictionary specifying how many additional parameters
+# are required by each block type
 _BLOCKS_NUM_PARS = {
     "coordinate": 0,
     "Summationsstelle": 0,
@@ -60,7 +61,8 @@ _PATTERN_IMPORT_SKETCH = r"""
 (?P<b_id>{all_short_ids:s})  # Capture the short ID...
 (?P<b_num>\d+)               # and at least one digit or more
 """.format(all_short_ids=_ALL_SHORT_IDS)
-_RE_IMPORT_SKETCH = re.compile(_PATTERN_IMPORT_SKETCH, re.VERBOSE | re.IGNORECASE)
+_RE_IMPORT_SKETCH = re.compile(_PATTERN_IMPORT_SKETCH,
+                               re.VERBOSE | re.IGNORECASE)
 
 # Pattern and regex for matching connections specifications
 _PATTERN_IMPORT_CONNECTION = r"""
@@ -69,18 +71,20 @@ _PATTERN_IMPORT_CONNECTION = r"""
                                #
 \s*?                           # Here can be some whitespaces.
                                #
-(?P<line_type>-|=)             # Capture the line type. It can be '-' for scalar and '=' for vector
+(?P<line_type>-|=)             # Capture the line type.
+                               # It can be '-' for scalar and '=' for vector
                                #
 \s*?                           # Here can be some whitespaces.
                                #
 (?P<to_id>{all_short_ids:s})   # Capture the short ID of the 'to'-block...
 (?P<to_num>\d+)                # and at least one digit or more.
 """.format(all_short_ids=_ALL_SHORT_IDS)
-_RE_IMPORT_CONNECTION = re.compile(_PATTERN_IMPORT_CONNECTION, re.VERBOSE | re.IGNORECASE)
+_RE_IMPORT_CONNECTION = re.compile(_PATTERN_IMPORT_CONNECTION,
+                                   re.VERBOSE | re.IGNORECASE)
 
 # Pattern and regex for matching renaming specifications
 _PATTERN_IMPORT_RENAME = r"""
-(?P<old_id>{all_short_ids:s}) # Capture the short ID of the block to be renamed...
+(?P<old_id>{all_short_ids:s}) # Capture the short ID of the block to be renamed
 (?P<old_num>\d+)              # and at least one digit or more.
                               #
 \s*?                          # Here can be some whitespaces.
@@ -89,7 +93,8 @@ _PATTERN_IMPORT_RENAME = r"""
                               #
 (?P<new_name>.*)$             # Capture the rest of the line.
 """.format(all_short_ids=_ALL_SHORT_IDS)
-_RE_IMPORT_RENAME = re.compile(_PATTERN_IMPORT_RENAME, re.VERBOSE | re.IGNORECASE)
+_RE_IMPORT_RENAME = re.compile(_PATTERN_IMPORT_RENAME,
+                               re.VERBOSE | re.IGNORECASE)
 
 
 def _write_a_tikz_coordinate(name, xy, num_fmt):
@@ -172,7 +177,8 @@ class Block(AbstractBlock):
     def get_tikz_coordinate(self, num_fmt):
         """Get a str with a TikZ coordinate definition for the block.
 
-        The coordinate's name is the block's name extended with a "--coord" suffix.
+        The coordinate's name is the block's name extended with a
+        "--coord" suffix.
 
         Parameters
         ----------
@@ -185,7 +191,8 @@ class Block(AbstractBlock):
             TikZ coordinate definition for the block.
 
         """
-        return _write_a_tikz_coordinate(self.name + "--coord", self.xy, num_fmt)
+        return _write_a_tikz_coordinate(self.name + "--coord",
+                                        self.xy, num_fmt)
 
     def get_latex_definition(self):
         """Get LaTeX definition of the block.
@@ -266,8 +273,14 @@ class BlockschaltbildCoordinate(AbstractBlock):
 class Blockschaltbild:
     """Class for block diagrams."""
 
-    def __init__(self, x_scale=0.5, y_scale=1.5,
-                 block_sizes=None, scalar_style=None, vector_style=None, arrow_style=None):
+    def __init__(self,
+                 x_scale=0.5,
+                 y_scale=1.5,
+                 block_sizes=None,
+                 scalar_style=None,
+                 vector_style=None,
+                 arrow_style=None
+                 ):
         """Create a Blockschaltbild object.
 
         Parameters
@@ -275,7 +288,8 @@ class Blockschaltbild:
         x_scale : float, optional
             Default x-axis scale in cm.
         y_scale : float, optional
-            Default y-axis scale in cm. It should be larger than the x-scale (2x..3x).
+            Default y-axis scale in cm.
+            It should be larger than the x-scale (2x .. 3x).
         block_sizes : dict, optional
             Default block sizes.
         scalar_style : str, optional
@@ -374,7 +388,10 @@ class Blockschaltbild:
 
         """
 
-        idx = next((idx for idx, b in enumerate(self._blocks) if b.name == block_name), None)
+        idx = next(
+            (i for i, b in enumerate(self._blocks) if b.name == block_name),
+            None,
+            )
 
         if idx is None:
             raise ValueError("Block '{:s}' not found!".format(block_name))
@@ -384,8 +401,8 @@ class Blockschaltbild:
     def _get_sorted_blocks(self):
         """Get a list of sorted blocks.
 
-        Blocks (and coordinates) are sorted by the x-position in ascending order,
-        i.e. from left to right.
+        Blocks (and coordinates) are sorted by the x-position
+        in ascending order, i.e. from left to right.
 
         Returns
         -------
@@ -413,7 +430,8 @@ class Blockschaltbild:
         """
 
         # Get edges, i.e. non-zero entries of the adjacency matrix
-        # However, 'np.nonzero' returns a tuple of lists; we want a list of tuples:
+        # However, 'np.nonzero' returns a tuple of lists;
+        # we want a list of tuples:
         edges = list(zip(*np.nonzero(self._adj_mat)))
         # Sort the edges by the x-coordinate of the 'from'-block
         edges.sort(key=lambda idx: self._blocks[idx[0]].xy[0])
@@ -435,8 +453,11 @@ class Blockschaltbild:
                 style_str += ", " + self.arrow_style
 
             # Create and append a connection
-            c = (self._blocks[idx_from].name, self._blocks[idx_to].name, style_str)
-            connections.append(c)
+            connections.append((
+                self._blocks[idx_from].name,
+                self._blocks[idx_to].name,
+                style_str,
+                ))
 
         return connections
 
@@ -482,7 +503,8 @@ class Blockschaltbild:
         # Do not use 'np.pad' here! It does not function for empty matrices.
         temp_mat = self._adj_mat
         new_num_blocks = self.num_blocks
-        self._adj_mat = np.zeros((new_num_blocks, new_num_blocks), dtype=np.int)
+        self._adj_mat = np.zeros((new_num_blocks, new_num_blocks),
+                                 dtype=np.int)
         self._adj_mat[:-1, :-1] = temp_mat
 
     def get_block(self, block_name):
@@ -624,14 +646,20 @@ class Blockschaltbild:
             """
 
             # Use default joint size
-            self.add_block("Verzweigung", joint_name, xy, self.block_sizes["Verzweigung"])
+            self.add_block(
+                "Verzweigung",
+                joint_name,
+                xy,
+                self.block_sizes["Verzweigung"],
+                )
             # The last row corresponds to the new joint;
             # copy the old row (= old outgoing connections) to the joint
             self._adj_mat[-1, :] = self._adj_mat[old_idx, :]
             # Remove all outgoing connections from the old block
             self._adj_mat[old_idx, :] = 0
-            # Add a single connection to the freshly created joint
-            # I don't want to implement fancy smart scalar/vector detection here
+            # Add a single scalar connection to the freshly created joint
+            # I don't want to implement fancy smart scalar/vector
+            # detection here
             self._adj_mat[old_idx, -1] = _SCALAR_EDGE
 
         # Return if the Blockschaltbild has no blocks
@@ -648,15 +676,19 @@ class Blockschaltbild:
         # is repeated. If no, we break out of the while loop.
         while True:
             # First, for each row check if it has multiple outgoing connections
-            has_multiple_connections = np.sum(self._adj_mat >= _SCALAR_EDGE, axis=1) > 1
+            has_multiple_connections = \
+                np.sum(self._adj_mat >= _SCALAR_EDGE, axis=1) > 1
             # Second, for each row check if it corresponds to a non-joint block
-            is_not_a_joint = [b.block_type != "Verzweigung" for b in self._blocks]
+            is_not_a_joint = \
+                [b.block_type != "Verzweigung" for b in self._blocks]
             # Now make an element-wise AND of these two lists
-            # The second operand (plain list) will be converted to an np.array automatically
+            # The second operand (plain list) will be converted to an
+            # `np.array` automatically
             is_relevant = has_multiple_connections & is_not_a_joint
             # Make a list of indices corresponding to non-joint blocks
             # with multiple outgoing connections
-            idx_relevant = [idx for idx, cond in enumerate(is_relevant) if cond]
+            idx_relevant = \
+                [idx for idx, cond in enumerate(is_relevant) if cond]
 
             # If the list is not empty, ...
             if idx_relevant:
@@ -700,7 +732,8 @@ class Blockschaltbild:
 
             # Get everything that matches to the block short ID pattern
             for m in _RE_IMPORT_SKETCH.finditer(line):
-                # The x-coordinate is the mean of the match beginning and end positions
+                # The x-coordinate is the mean of the match
+                # beginning and end positions
                 x = self.x_scale*np.mean(m.span())
                 # The block name is simply its short ID plus its number
                 block_name = m.group("b_id") + m.group("b_num")
@@ -724,7 +757,8 @@ class Blockschaltbild:
             # Try to match the connection pattern once
             m = _RE_IMPORT_CONNECTION.search(line)
             if m is not None:
-                # If found something, get the names of the 'from'- and 'to'-blocks
+                # If found something, get the names of the
+                # 'from'- and 'to'-blocks
                 b_from = m.group("from_id") + m.group("from_num")
                 b_to = m.group("to_id") + m.group("to_num")
                 # Distinguish between scalar and vector connections
@@ -748,8 +782,13 @@ class Blockschaltbild:
             if m is not None:
                 # If found something, get the name of the block to be renamed
                 old_name = m.group("old_id") + m.group("old_num")
-                # Remove some special characters from the new block name and strip the whitespaces
-                new_name = re.sub(r"[~!@#$%^&*()/\\,.;']", " ", m.group("new_name")).strip()
+                # Remove some special characters from the new block name and
+                # strip the whitespaces
+                new_name = re.sub(
+                    r"[~!@#$%^&*()/\\,.;']",
+                    " ",
+                    m.group("new_name"),
+                    ).strip()
                 # Rename the block
                 self.rename_block(old_name, new_name)
 
@@ -772,12 +811,15 @@ class Blockschaltbild:
                                 for b in self._get_sorted_blocks())
 
         # Get all block definitions, i.e. including coordinates (`None`)
-        all_blocks = (b.get_latex_definition() for b in self._get_sorted_blocks())
+        all_blocks = \
+            (b.get_latex_definition() for b in self._get_sorted_blocks())
         # Leave only real block definitions
         blocks = "\n".join(filter(lambda e: e is not None, all_blocks))
 
-        connections = "\n".join("\\draw[{:s}] ({:s}) -- ({:s});".format(st, fb, tb)
-                                for fb, tb, st in self._get_sorted_connections_list())
+        connections = "\n".join(
+            "\\draw[{:s}] ({:s}) -- ({:s});".format(st, fb, tb)
+            for fb, tb, st in self._get_sorted_connections_list()
+            )
 
         return "\n".join([
             "\\begin{tikzpicture}\n\n",  # place the opening tag

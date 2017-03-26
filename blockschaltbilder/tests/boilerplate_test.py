@@ -25,8 +25,8 @@ class TestBoilerplate(unittest.TestCase):
             "       PTZ1         P1      ",
             "     TZ2    PTE10       P2  ",
             "                            ",
-            "       names:               ",  # test if the parser is robust enough
-            "    PTZ1  :  pt 2 glied     ",
+            "       names:               ",  # test if the parser is
+            "    PTZ1  :  pt 2 glied     ",  # robust enough
             "  TZ2 : totzeit             ",
             "    PTE10  :    pt eins     ",
             "                            ",

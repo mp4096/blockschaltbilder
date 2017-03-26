@@ -209,8 +209,10 @@ def convert_to_tikz(paths):
     Parameters
     ----------
     paths : list of str
-        File or folder specification. If a 'path' element is a file, only it is converted;
-        if it is a folder, all '*.bsb' files in it and its subfolders will be converted.
+        File or folder specification.
+        If a 'path' element is a file, only it is converted;
+        if it is a folder, all '*.bsb' files in it and its subfolders
+        will be converted.
 
     """
     for p in paths:
