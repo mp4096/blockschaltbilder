@@ -1,0 +1,5 @@
+# Force \n as EOL
+* text eol=lf
+
+# LaTeX
+*.tex       diff=tex
