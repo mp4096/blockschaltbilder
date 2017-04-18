@@ -2,4 +2,7 @@
 * text eol=lf
 
 # LaTeX
-*.tex       diff=tex
+*.tex diff=tex
+
+# Binary files
+*.png binary
