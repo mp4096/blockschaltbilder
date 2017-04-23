@@ -1,4 +1,4 @@
-"""This module contains the Blockschaltbild class."""
+"""Block diagram class."""
 
 
 from abc import ABCMeta, abstractmethod
@@ -98,7 +98,7 @@ _RE_IMPORT_RENAME = re.compile(_PATTERN_IMPORT_RENAME,
 
 
 def _write_a_tikz_coordinate(name, xy, num_fmt):
-    """Writes a TikZ coordinate definition.
+    """Write a TikZ coordinate definition.
 
     Parameters
     ----------
@@ -116,7 +116,6 @@ def _write_a_tikz_coordinate(name, xy, num_fmt):
         TikZ coordinate definition without newline char.
 
     """
-
     fmt_str = "{:" + num_fmt + "}"
 
     tex_str = "\\coordinate ({:s})".format(name)
@@ -143,7 +142,7 @@ class Block(AbstractBlock):
     """Blockschaltbild block class."""
 
     def __init__(self, block_type, name, xy, size, pars=None):
-        """Creates a new block.
+        """Create a new block.
 
         Parameters
         ----------
@@ -159,7 +158,6 @@ class Block(AbstractBlock):
             Additional parameters for the block.
 
         """
-
         #: str: Block type specification
         self.block_type = block_type
         #: str: Block name
@@ -203,7 +201,6 @@ class Block(AbstractBlock):
             LaTeX command with the block definition.
 
         """
-
         tex_str = "\\"
         # Write block type
         tex_str += self.block_type
@@ -224,7 +221,7 @@ class BlockschaltbildCoordinate(AbstractBlock):
     """Blockschaltbild coordinate class."""
 
     def __init__(self, name, xy):
-        """Creates a new coordinate.
+        """Create a new coordinate.
 
         Parameters
         ----------
@@ -234,7 +231,6 @@ class BlockschaltbildCoordinate(AbstractBlock):
             Coordinate (x, y)-location.
 
         """
-
         #: str: Coordinate name
         self.name = name
         #: str: Block type, constant
@@ -259,7 +255,7 @@ class BlockschaltbildCoordinate(AbstractBlock):
         return _write_a_tikz_coordinate(self.name, self.xy, num_fmt)
 
     def get_latex_definition(self):
-        """Implements the superclass method.
+        """Implement the superclass method.
 
         Returns
         -------
@@ -300,7 +296,6 @@ class Blockschaltbild:
             Style of the arrow tips.
 
         """
-
         # Store scale information
         self.x_scale = x_scale
         self.y_scale = y_scale
@@ -358,7 +353,7 @@ class Blockschaltbild:
         return len(self._blocks)
 
     def _does_this_block_exist(self, block_name):
-        """ Check if a block exists.
+        """Check if a block exists.
 
         Parameters
         ----------
@@ -374,7 +369,7 @@ class Blockschaltbild:
         return any(b.name == block_name for b in self._blocks)
 
     def _get_block_idx_by_name(self, block_name):
-        """ Search for a block, return its index or raise an exception if not found.
+        """Search for a block, return its index or raise an exception if not found.
 
         Parameters
         ----------
@@ -387,7 +382,6 @@ class Blockschaltbild:
             Block index.
 
         """
-
         idx = next(
             (i for i, b in enumerate(self._blocks) if b.name == block_name),
             None,
@@ -428,7 +422,6 @@ class Blockschaltbild:
             * String with the TikZ style specification
 
         """
-
         # Get edges, i.e. non-zero entries of the adjacency matrix
         # However, 'np.nonzero' returns a tuple of lists;
         # we want a list of tuples:
@@ -462,7 +455,7 @@ class Blockschaltbild:
         return connections
 
     def add_block(self, block_type, name, xy, size=None, pars=None):
-        """ Add a block or a coordinate
+        """Add a block or a coordinate.
 
         Parameters
         ----------
@@ -478,7 +471,6 @@ class Blockschaltbild:
             Additional parameters for the block.
 
         """
-
         # Raise an exception if a block with this name already exists
         if self._does_this_block_exist(name):
             raise ValueError("Block '{:s}' already exists!".format(name))
@@ -508,7 +500,7 @@ class Blockschaltbild:
         self._adj_mat[:-1, :-1] = temp_mat
 
     def get_block(self, block_name):
-        """ Get a handle to a block.
+        """Get a handle to a block.
 
         Parameters
         ----------
@@ -532,7 +524,6 @@ class Blockschaltbild:
             Name of the block to delete.
 
         """
-
         idx_to_delete = self._get_block_idx_by_name(block_name)
 
         # Delete the block from the list
@@ -553,7 +544,6 @@ class Blockschaltbild:
             New block name.
 
         """
-
         # Raise an exception if a block with the new name already exists
         if self._does_this_block_exist(new_name):
             raise ValueError("Block '{:s}' already exists!".format(new_name))
@@ -575,7 +565,6 @@ class Blockschaltbild:
             True if the connection is vector-valued, False if scalar.
 
         """
-
         # Get block indices
         from_idx = self._get_block_idx_by_name(from_block_name)
         to_idx = self._get_block_idx_by_name(to_block_name)
@@ -608,7 +597,6 @@ class Blockschaltbild:
             Name of the 'to'-block.
 
         """
-
         # Get block indices
         from_idx = self._get_block_idx_by_name(from_block_name)
         to_idx = self._get_block_idx_by_name(to_block_name)
@@ -630,7 +618,6 @@ class Blockschaltbild:
         and has multiple connections going out of it.
 
         """
-
         def add_a_single_joint(old_idx, joint_name, xy):
             """Add a single default joint to the Blockschaltbild.
 
@@ -644,7 +631,6 @@ class Blockschaltbild:
                 (x, y)-coordinates of the new joint.
 
             """
-
             # Use default joint size
             self.add_block(
                 "Verzweigung",
@@ -714,7 +700,6 @@ class Blockschaltbild:
             ASCII graphics-like sketch, line by line.
 
         """
-
         # Delete all empty lines at the bottom of the sketch
         while len(sketch) > 0 and not sketch[-1].strip():
             sketch.pop()
@@ -806,7 +791,6 @@ class Blockschaltbild:
             Text with the exported Blockschaltbild.
 
         """
-
         coordinates = "\n".join(b.get_tikz_coordinate(num_fmt)
                                 for b in self._get_sorted_blocks())
 
@@ -847,6 +831,5 @@ class Blockschaltbild:
             Specification of the numbers format, e.g. '.4f'.
 
         """
-
         with codecs.open(filename, 'w', encoding="utf-8") as f:
             f.write(self.export_to_text(num_fmt))

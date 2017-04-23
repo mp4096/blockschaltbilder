@@ -25,8 +25,7 @@ class Reader:
     """State machine for reading *.bsb files."""
 
     def __init__(self):
-        """Creates a new reader state machine."""
-
+        """Create a new reader state machine."""
         # Initialise with inactive state
         self.transit_to(Inactive)
 
@@ -53,7 +52,6 @@ class Reader:
             One line of a *.bsb file.
 
         """
-
         # We strip the line only for tag matching; the original line is
         # stored in accumulator lists in order to preserve indentation.
         stripped_line = line.strip()
@@ -70,7 +68,7 @@ class Reader:
             self._store(line)
 
     def _store(self, line):
-        """Stores a line in an appropriate accumulator list.
+        """Store a line in an appropriate accumulator list.
 
         Delegates this to the state's static method.
 
@@ -80,7 +78,6 @@ class Reader:
             One line of a *.bsb file.
 
         """
-
         return self._state.store_line(self, line)
 
 
@@ -131,7 +128,6 @@ def _convert_text(lines):
         A block diagram created from text.
 
     """
-
     # Set current status to inactive
     reader = Reader()
 
@@ -168,7 +164,6 @@ def _convert_single_file(filename):
         Path to the file to be converted.
 
     """
-
     # Check file extension
     if not fnmatch.fnmatch(filename, '*.bsb'):
         raise ValueError("The input file must have a 'bsb' extension")
@@ -185,7 +180,7 @@ def _convert_single_file(filename):
 
 
 def _find_bsb_files(root_directory):
-    """Walk recursively through subfolders and yield *.bsb files
+    """Walk recursively through subfolders and yield *.bsb files.
 
     Parameters
     ----------
