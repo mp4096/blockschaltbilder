@@ -154,7 +154,7 @@ Die werden also im Overlay markiert und man kann in der Vorschau Blöcke interak
 ## Boilerplate-Code-Generator
 Um den Tippaufwand zu reduzieren, kann man den mitgelieferten
 Boilerplate-Code-Generator verwenden. Die ausführlichere Dokumentation können Sie
-[hier](https://github.com/mp4096/blockschaltbilder/blob/master/docs/boilerplate.md)
+[hier](docs/boilerplate.md)
 nachlesen.
 
 
