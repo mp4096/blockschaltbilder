@@ -1,11 +1,21 @@
 language: python
-python:
-  - "3.5"
-  - "3.6"
-  - "nightly"
+
+matrix:
+  include:
+    - python: "3.5"
+    - python: "3.6"
+    - python: "nightly"
+  allow_failures:
+    - python: "nightly"
+
 install:
   - pip install numpy pyyaml
   - pip install coverage coveralls # for CI
+
 script:
   - coverage run --source=blockschaltbilder setup.py test
-after_success: coveralls
+
+after_success: >
+  if [[ "$TRAVIS_PYTHON_VERSION" == "3.6" ]]; then
+    coveralls
+  fi
