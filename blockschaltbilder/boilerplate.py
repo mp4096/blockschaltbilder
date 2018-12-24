@@ -2,7 +2,6 @@
 
 
 from .bsb import Blockschaltbild
-import codecs
 import fnmatch
 import os
 import re
@@ -169,7 +168,7 @@ def _convert_single_file(filename):
         raise ValueError("The input file must have a 'bsb' extension")
 
     # Open this file and read all its contents into a list
-    with codecs.open(filename, 'r', encoding="utf-8") as f:
+    with open(filename, 'r', encoding="utf-8") as f:
         lines = f.readlines()
 
     # Convert them into a Blockschaltbild with automatically placed joints

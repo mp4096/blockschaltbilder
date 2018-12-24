@@ -2,7 +2,6 @@
 
 
 from abc import ABCMeta, abstractmethod
-import codecs
 import numpy as np
 import re
 
@@ -831,5 +830,5 @@ class Blockschaltbild:
             Specification of the numbers format, e.g. '.4f'.
 
         """
-        with codecs.open(filename, 'w', encoding="utf-8") as f:
+        with open(filename, 'w', encoding="utf-8") as f:
             f.write(self.export_to_text(num_fmt))
